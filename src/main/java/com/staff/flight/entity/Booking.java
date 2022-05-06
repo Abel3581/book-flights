@@ -34,4 +34,9 @@ public class Booking {
     @OneToOne(mappedBy = "booking",cascade = CascadeType.ALL, fetch = FetchType.EAGER )
     private Passage passage;
 
+    @ManyToOne
+    //@JsonIgnore
+    @JoinColumn(name = "flight_id")
+    private Flight flight;
+
 }
