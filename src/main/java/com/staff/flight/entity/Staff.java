@@ -18,7 +18,7 @@ public class Staff extends User{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "staff_id")
-    private Long id;
+    private Long staffId;
 
     @Column(nullable = false, name = "job_post")
     private String jobPost;
