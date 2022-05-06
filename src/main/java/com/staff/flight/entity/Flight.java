@@ -1,5 +1,6 @@
 package com.staff.flight.entity;
 
+import com.staff.flight.entity.enums.EnumFlight;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,12 +23,12 @@ public class Flight {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "flight_id")
-    private Long id;
+    private Long flightId;
 
     private Date date;
 
-   // @Enumerated(value = EnumType.STRING)
-  //  private EnumFlightStatus status;
+    @Enumerated(value = EnumType.STRING)
+    private EnumFlight status;
 
     private Integer ability; //capacidad
 

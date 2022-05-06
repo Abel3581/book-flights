@@ -16,7 +16,7 @@ public class Passenger extends User{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "passenger_id")
-    private Long id;
+    private Long passengerId;
 
     @Column(name = "soft_delete")
     private boolean softDelete;

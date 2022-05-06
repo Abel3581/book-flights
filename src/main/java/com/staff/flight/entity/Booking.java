@@ -1,6 +1,6 @@
 package com.staff.flight.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.staff.flight.entity.enums.EnumBooking;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,11 +20,14 @@ public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "booking_id")
-    private Long id;
+    private Long bookingId;
 
     private Date issue;//fecha_emision
 
     private Date expiration;//fecha_vencimiento
+
+    @Enumerated(value = EnumType.STRING)
+    private EnumBooking conditions;
 
     @ManyToOne
     @JoinColumn(name = "passenger_id")
