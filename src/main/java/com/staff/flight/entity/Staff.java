@@ -23,6 +23,4 @@ public class Staff extends User{
     @Column(nullable = false, name = "job_post")
     private String jobPost;
 
-    @Column(name = "soft_delete")
-    private boolean softDelete;
 }

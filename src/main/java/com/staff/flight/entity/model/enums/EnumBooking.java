@@ -1,4 +1,4 @@
-package com.staff.flight.entity.enums;
+package com.staff.flight.entity.model.enums;
 
 public enum EnumBooking {
     REALIZED, SUSPENDED, CANCELED
