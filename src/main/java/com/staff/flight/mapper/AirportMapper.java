@@ -4,10 +4,11 @@ import com.staff.flight.entity.Airport;
 import com.staff.flight.entity.model.request.AirportRequest;
 import com.staff.flight.entity.model.response.AirportResponse;
 import lombok.Builder;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 @Builder
-@Service
+@Component
 public class AirportMapper {
 
 

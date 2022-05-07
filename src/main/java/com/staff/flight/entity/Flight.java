@@ -43,8 +43,17 @@ public class Flight {
     @Column(name = "currency_code")
     private String currencyCode; //ARS, USD
 
+    @Column(nullable = true)
     @OneToMany(mappedBy = "flight", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Booking> bookings = new ArrayList<>();
+
+    @Column(nullable = true)
+    @OneToMany(mappedBy = "flight", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Staff> staffList = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name = "airport_id")
+    private Airport airport;
 
     public void addBooking(Booking booking){
         bookings.add(booking);

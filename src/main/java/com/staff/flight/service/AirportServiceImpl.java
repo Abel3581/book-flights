@@ -16,10 +16,13 @@ public class AirportServiceImpl implements AirportService {
     private final AirportRepository airportRepository;
     private final AirportMapper airportMapper;
     @Override
-    public AirportResponse save(AirportRequest request) {
-        Airport airportEntity = AirportMapper.airportDTO2Entity(request);
-        Airport saved = airportRepository.save(airportEntity);
-        return AirportMapper.airportEntity2DTO(saved);
+    public AirportResponse save(AirportRequest request){
+
+            Airport airportEntity = AirportMapper.airportDTO2Entity(request);
+            Airport saved = airportRepository.save(airportEntity);
+            return AirportMapper.airportEntity2DTO(saved);
+
+
     }
 
 }

@@ -3,6 +3,9 @@ package com.staff.flight.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import java.util.ArrayList;
+import java.util.List;
 
 @Builder
 @NoArgsConstructor
@@ -18,9 +21,13 @@ public class Airport {
     @Column(name = "airport_id")
     private Long airportId;
 
-    @Column(nullable = false)
+    @NotEmpty(message = "The name is required and cannot be null or empty")
     private String name;
 
-    @Column(name = "iata_code", nullable = false)
+    @NotEmpty(message = "The code is mandatory and cannot be null or empty")
+    @Column(name = "iata_code")
     private String code;
+
+    @OneToMany(mappedBy = "airport",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Flight> flightLis = new ArrayList<>();
 }
