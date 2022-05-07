@@ -1,7 +1,9 @@
 package com.staff.flight.service;
 
+
 import org.springframework.stereotype.Service;
 
 @Service
-public class PassengerServiceImpl {
+public class PassengerServiceImpl  {
+
 }
