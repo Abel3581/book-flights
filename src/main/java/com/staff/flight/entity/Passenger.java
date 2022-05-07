@@ -18,9 +18,6 @@ public class Passenger extends User{
     @Column(name = "passenger_id")
     private Long passengerId;
 
-    @Column(name = "soft_delete")
-    private boolean softDelete;
-
     @OneToMany(mappedBy = "passenger", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Booking> bookings = new ArrayList<>();
 

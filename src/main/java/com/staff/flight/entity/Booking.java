@@ -1,6 +1,6 @@
 package com.staff.flight.entity;
 
-import com.staff.flight.entity.enums.EnumBooking;
+import com.staff.flight.entity.model.enums.EnumBooking;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
