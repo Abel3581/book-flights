@@ -1,6 +1,9 @@
 package com.staff.flight.entity.model.response;
 
+import com.staff.flight.entity.Flight;
 import lombok.*;
+
+import java.util.List;
 
 @Builder
 @AllArgsConstructor
@@ -11,4 +14,5 @@ public class AirportResponse {
 
     private String name;
     private String code;
+    private List<FlightResponse> flightList;
 }

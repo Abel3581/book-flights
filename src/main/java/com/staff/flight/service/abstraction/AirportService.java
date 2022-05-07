@@ -5,4 +5,6 @@ import com.staff.flight.entity.model.response.AirportResponse;
 
 public interface AirportService {
     AirportResponse save(AirportRequest request);
+
+    AirportResponse getById(long id);
 }
