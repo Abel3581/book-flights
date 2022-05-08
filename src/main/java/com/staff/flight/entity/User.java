@@ -2,11 +2,13 @@ package com.staff.flight.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -25,8 +27,8 @@ public class User implements UserDetails {
     private String email; // es el username
     @Column(nullable = false)
     private String password;
-    @Column(name = "registration_Date")
-    private Date registrationDate;
+    @CreationTimestamp
+    private Timestamp timestamp;
     @Column(unique = true)
     private String dni;
     private String country;

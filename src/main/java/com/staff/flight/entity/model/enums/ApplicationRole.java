@@ -2,6 +2,7 @@ package com.staff.flight.entity.model.enums;
 
 public enum ApplicationRole {
     USER("USER"),
+    STAFF("STAFF"),
     ADMIN("ADMIN");
 
     private static final String ROLE_PREFIX = "ROLE_";
