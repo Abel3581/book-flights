@@ -1,5 +1,6 @@
 package com.staff.flight.config;
 
+import com.staff.flight.entity.Passenger;
 import com.staff.flight.entity.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -51,7 +52,7 @@ public class JwtUtil {
     }
 
     public String generateToken(UserDetails userDetails) {
-        User user = (User) userDetails;
+        Passenger user = (Passenger) userDetails;
         return createToken(user.getUsername(), user.getRoles().get(0).getName());
     }
 
@@ -81,14 +82,5 @@ public class JwtUtil {
     }
 
 
-    public String createToken(Authentication authentication) {
-        UserDetails userDetails=(UserDetails) authentication.getPrincipal();
-        List<String> roles=userDetails.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList());
-        return Jwts.builder()
-                .setSubject(userDetails.getUsername())
-                .claim("roles", roles)
-                .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10))
-                .signWith(SignatureAlgorithm.HS256, SECRET_KEY.getBytes(Charset.forName("UTF-8"))).compact();
-    }
+
 }
