@@ -27,7 +27,7 @@ public class AppDatabaseSeeder {
     private final PassengerRepository passengerRepository;
 
     private final PasswordEncoder passwordEncoder;
-    private static final String DNIS[] ={"12345674","55555555","98765432","45678902","12345678",
+    private static final String[] DNIS ={"12345674","55555555","98765432","45678902","12345678",
             "12345974","55585555","18765432","45638902","72345678"};
 
     @EventListener

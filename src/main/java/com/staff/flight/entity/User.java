@@ -8,6 +8,8 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.Date;
@@ -23,9 +25,11 @@ public class User implements UserDetails {
     private String firstName;
     @Column(nullable = false)
     private String lastName;
+    @NotBlank(message = "Email cannot be empty.")
     @Column(unique = true, nullable = false)
     private String email; // es el username
-    @Column(nullable = false)
+    @NotBlank(message = "Password cannot be empty.")
+    @Size(min = 8, max = 250, message = "Password should have at least 8 characters")
     private String password;
     @CreationTimestamp
     private Timestamp timestamp;
@@ -54,21 +58,21 @@ public class User implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return isSoftDelete();
+        return !this.softDelete;
     }
 }
