@@ -1,6 +1,8 @@
 package com.staff.flight.controller;
 
+import com.staff.flight.entity.model.request.PassengerAuthenticationRequest;
 import com.staff.flight.entity.model.request.PassengerRegisterRequest;
+import com.staff.flight.entity.model.response.PassengerAuthenticatedResponse;
 import com.staff.flight.entity.model.response.PassengerRegisterResponse;
 import com.staff.flight.service.abstraction.PassengerService;
 import lombok.RequiredArgsConstructor;
@@ -25,4 +27,12 @@ public class AuthenticationController {
         PassengerRegisterResponse response = passengerService.register(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
+
+    @PostMapping("/login")
+    public ResponseEntity<PassengerAuthenticatedResponse> login(@Valid @RequestBody PassengerAuthenticationRequest request){
+        PassengerAuthenticatedResponse response = passengerService.authentication(request);
+        return ResponseEntity.ok().body(response);
+    }
+
+
 }
