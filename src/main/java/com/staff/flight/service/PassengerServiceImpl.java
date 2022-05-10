@@ -57,7 +57,7 @@ public class PassengerServiceImpl  implements PassengerService, UserDetailsServi
     public PassengerAuthenticatedResponse authentication(PassengerAuthenticationRequest request){
         Passenger passenger = getPassenger(request.getEmail());
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(),request.getPassword()));
-        return new PassengerAuthenticatedResponse(jwt.generateToken(passenger), passenger.getEmail());
+        return new PassengerAuthenticatedResponse(jwt.generateToken(passenger), passenger.getEmail(), passenger.getAuthorities());
 
     }
 

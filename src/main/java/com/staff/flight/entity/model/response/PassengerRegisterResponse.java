@@ -2,8 +2,6 @@ package com.staff.flight.entity.model.response;
 
 import lombok.*;
 
-import java.sql.Timestamp;
-import java.util.Date;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
