@@ -1,5 +1,6 @@
 package com.staff.flight.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.staff.flight.entity.model.enums.EnumFlight;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,6 +9,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -25,7 +28,10 @@ public class Flight {
     @Column(name = "flight_id")
     private Long flightId;
 
-    private Date date;
+    @JsonFormat(pattern="dd/MM/yyyy")
+    private LocalDate departureDate;
+
+    private LocalDateTime hour;
 
     @Enumerated(value = EnumType.STRING)
     private EnumFlight status;

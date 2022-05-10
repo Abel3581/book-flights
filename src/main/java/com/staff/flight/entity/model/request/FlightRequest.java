@@ -1,33 +1,31 @@
-package com.staff.flight.entity.model.response;
+package com.staff.flight.entity.model.request;
 
-import com.staff.flight.entity.Airport;
-import com.staff.flight.entity.Booking;
-import com.staff.flight.entity.Staff;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.staff.flight.entity.model.enums.EnumFlight;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import javax.persistence.Column;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.List;
 
-
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
-public class FlightResponse {
+@Getter @Setter
+public class FlightRequest {
 
-    private Long flightId;
+    @JsonFormat(pattern="dd/MM/yyyy")
     private LocalDate departureDate;
 
     private LocalDateTime hour;
     // DateTimeFormatter f = DateTimeFormatter.ofPattern("hh:MM");
     //System.out.println("Hora:mes = " + hora.format(f));
+
     @Enumerated(value = EnumType.STRING)
     private EnumFlight status;
 
@@ -41,9 +39,6 @@ public class FlightResponse {
 
     private String currencyCode; //ARS, USD
 
-    private Airport airport;
-    //private List<Booking> bookings;
-    //private List<Staff> staffList;
-
+    private long airportId;
 
 }
