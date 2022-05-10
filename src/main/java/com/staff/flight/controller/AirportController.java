@@ -23,7 +23,6 @@ public class AirportController {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
 
     }
-
     @GetMapping("/{id}")
     public ResponseEntity<AirportResponse> getById(@PathVariable long id){
        AirportResponse response = service.getById(id);
