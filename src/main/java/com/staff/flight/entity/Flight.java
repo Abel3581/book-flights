@@ -1,6 +1,7 @@
 package com.staff.flight.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.staff.flight.entity.model.enums.EnumFlight;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -54,6 +55,7 @@ public class Flight {
     private List<Booking> bookings = new ArrayList<>();
 
     @Column(nullable = true)
+    //@JsonIgnoreProperties(value = "flight")
     @OneToMany(mappedBy = "flight", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Staff> staffList = new ArrayList<>();
 

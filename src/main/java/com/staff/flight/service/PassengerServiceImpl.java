@@ -14,13 +14,14 @@ import com.staff.flight.repository.PassengerRepository;
 import com.staff.flight.service.abstraction.PassengerService;
 import com.staff.flight.service.abstraction.RoleService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +36,8 @@ public class PassengerServiceImpl  implements PassengerService, UserDetailsServi
     private final RoleService roleService;
     private final JwtUtil jwt;
 
+    private final PasswordEncoder passwordEncoder;
+
     private final AuthenticationManager authenticationManager;
 
 
@@ -44,6 +47,7 @@ public class PassengerServiceImpl  implements PassengerService, UserDetailsServi
            throw new RuntimeException("Email address is already used.");
         }
         Passenger passenger = passengerMapper.requestDTO2Entity(request);
+        passenger.setPassword(passwordEncoder.encode(request.getPassword()));
         List<Role> roles = new ArrayList<>();
         roles.add(roleService.findBy(ApplicationRole.USER.getFullRoleName()));
         passenger.setRoles(roles);
