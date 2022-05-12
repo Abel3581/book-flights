@@ -9,11 +9,13 @@ import com.staff.flight.entity.model.request.PassengerAuthenticationRequest;
 import com.staff.flight.entity.model.request.PassengerRegisterRequest;
 import com.staff.flight.entity.model.response.PassengerAuthenticatedResponse;
 import com.staff.flight.entity.model.response.PassengerRegisterResponse;
+import com.staff.flight.exception.EmailAlreadyExistException;
 import com.staff.flight.mapper.PassengerMapper;
 import com.staff.flight.repository.PassengerRepository;
 import com.staff.flight.service.abstraction.PassengerService;
 import com.staff.flight.service.abstraction.RoleService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -26,6 +28,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 @RequiredArgsConstructor
 @Service
 public class PassengerServiceImpl  implements PassengerService, UserDetailsService {
@@ -40,11 +43,11 @@ public class PassengerServiceImpl  implements PassengerService, UserDetailsServi
 
     private final AuthenticationManager authenticationManager;
 
-
+    @Transactional
     @Override
-    public PassengerRegisterResponse register(PassengerRegisterRequest request){
+    public PassengerRegisterResponse register(PassengerRegisterRequest request)throws EmailAlreadyExistException {
         if(passengerRepository.findByEmail(request.getEmail()) != null){
-           throw new RuntimeException("Email address is already used.");
+           throw new EmailAlreadyExistException();
         }
         Passenger passenger = passengerMapper.requestDTO2Entity(request);
         passenger.setPassword(passwordEncoder.encode(request.getPassword()));

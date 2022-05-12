@@ -4,6 +4,7 @@ import com.staff.flight.entity.model.request.PassengerAuthenticationRequest;
 import com.staff.flight.entity.model.request.PassengerRegisterRequest;
 import com.staff.flight.entity.model.response.PassengerAuthenticatedResponse;
 import com.staff.flight.entity.model.response.PassengerRegisterResponse;
+import com.staff.flight.exception.EmailAlreadyExistException;
 import com.staff.flight.service.abstraction.PassengerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -23,7 +24,8 @@ public class AuthenticationController {
     private final PassengerService passengerService;
 
     @PostMapping("/register")
-    public ResponseEntity<PassengerRegisterResponse> register(@Valid @RequestBody PassengerRegisterRequest request){
+    public ResponseEntity<PassengerRegisterResponse> register(@Valid @RequestBody PassengerRegisterRequest request)throws
+            EmailAlreadyExistException {
         PassengerRegisterResponse response = passengerService.register(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }

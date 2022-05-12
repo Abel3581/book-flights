@@ -7,6 +7,7 @@ import com.staff.flight.entity.Passenger;
 import com.staff.flight.entity.User;
 import com.staff.flight.entity.model.enums.ApplicationRole;
 import com.staff.flight.entity.model.request.PassengerRegisterRequest;
+import com.staff.flight.entity.model.response.ErrorResponse;
 import com.staff.flight.entity.model.response.PassengerRegisterResponse;
 import org.junit.Assert;
 import org.junit.Test;
@@ -63,6 +64,26 @@ public class RegisterPassengerIntegrationTest extends AbstractBaseIntegrationTes
 
 
     }
+
+    @Test
+    public void shouldReturnBadRequestWhenTheEmailAlreadyExist() {
+        when(passengerRepository.findByEmail(eq("marzoa3581@gmail.com"))).thenReturn(new Passenger());
+        PassengerRegisterRequest request = new PassengerRegisterRequest();
+        request.setFirstName("Abel");
+        request.setLastName("Acevedo");
+        request.setPassword("12345678");
+        request.setEmail("marzoa3581@gmail.com");
+        request.setCountry("Argentina");
+
+        HttpEntity<PassengerRegisterRequest> entity = new HttpEntity<>(request, this.headers);
+        ResponseEntity<ErrorResponse> response = this.restTemplate.exchange(
+                createURLWithPort("/auth/register"), HttpMethod.POST, entity, ErrorResponse.class);
+
+        Assert.assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+        Assert.assertEquals("Email already exist.", response.getBody().getMessage());
+    }
+
+
 
 
 }
