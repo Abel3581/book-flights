@@ -1,12 +1,17 @@
 package com.staff.flight.entity;
 
 import lombok.*;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.util.ArrayList;
 import java.util.List;
 
+
+@SQLDelete(sql = "UPDATE airport SET soft_delete=true WHERE id=?")
+@Where(clause = "soft_delete=false")
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -28,7 +33,14 @@ public class Airport {
     @Column(name = "iata_code")
     private String code;
 
+    @Column(name = "soft_delete")
+    private boolean softDelete = Boolean.FALSE;
+
     @OneToMany(mappedBy = "airport", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     List<Flight> flights = new ArrayList<>();
+
+    public void addFlights(Flight flight){
+        flights.add(flight);
+    }
 
 }

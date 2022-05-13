@@ -45,7 +45,7 @@ public class FlightMapper {
         response.setCurrencyCode(flight.getCurrencyCode());
         response.setStatus(flight.getStatus());
         response.setPrice(flight.getPrice());
-       response.setAirport(flight.getAirport());
+        response.setAirportId(flight.getAirport().getAirportId());
         response.setDepartureDate(flight.getDepartureDate());
         return response;
     }

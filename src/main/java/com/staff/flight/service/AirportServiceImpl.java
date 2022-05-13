@@ -32,12 +32,26 @@ public class AirportServiceImpl implements AirportService {
     }
 
     @Override
-    public Airport getAirport(long id) {
+    public AirportResponse getAirport(long id) {
        Optional<Airport> airport = airportRepository.findById(id);
-       if(airport.isEmpty()){
+       if(airport.isEmpty() || airport.get().isSoftDelete()){
            throw new EntityNotFoundException("Airport not found");
        }
-       return airport.get();
+       AirportResponse response = new AirportResponse();
+       response.setId(airport.get().getAirportId());
+       response.setName(airport.get().getName());
+       response.setCode(airport.get().getCode());
+
+       return response;
+    }
+
+    @Override
+    public Airport getAirportBy(long airportId) {
+        Optional<Airport> airport = airportRepository.findById(airportId);
+        if(airport.isEmpty() || airport.get().isSoftDelete()){
+            throw new EntityNotFoundException("Airport not found");
+        }
+        return airport.get();
     }
 
 }

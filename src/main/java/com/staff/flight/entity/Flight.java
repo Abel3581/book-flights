@@ -38,8 +38,6 @@ public class Flight {
 
     private Integer ability; //capacidad
 
-    //private String origin;
-
     private String destination;
 
     private Double price;
@@ -48,6 +46,8 @@ public class Flight {
     private String currencyCode; //ARS, USD
 
     private int occupiedSeats; //Asientos ocupados
+
+
 
     @Column(nullable = true)
     @OneToMany(mappedBy = "flight", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -60,7 +60,7 @@ public class Flight {
 
     @JsonIgnore
     @JoinColumn(name = "airport_id")
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private Airport airport;
 
 
