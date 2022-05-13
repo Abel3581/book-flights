@@ -1,6 +1,7 @@
 package com.staff.flight.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.staff.flight.entity.model.enums.EnumFlight;
 import lombok.AllArgsConstructor;
@@ -29,26 +30,24 @@ public class Flight {
     @Column(name = "flight_id")
     private Long flightId;
 
-    @JsonFormat(pattern="dd/MM/yyyy")
-    private LocalDate departureDate;
-
-    private LocalDateTime hour;
+    //@JsonFormat(pattern="dd/MM/yyyy")
+    private LocalDateTime departureDate;
 
     @Enumerated(value = EnumType.STRING)
     private EnumFlight status;
 
     private Integer ability; //capacidad
 
-    @Column(name = "airport_origin")
-    private Integer origin;
+    //private String origin;
 
-    @Column(name = "airport_destination")
-    private Integer destination;
+    private String destination;
 
-    private BigDecimal price;
+    private Double price;
 
     @Column(name = "currency_code")
     private String currencyCode; //ARS, USD
+
+    private int occupiedSeats; //Asientos ocupados
 
     @Column(nullable = true)
     @OneToMany(mappedBy = "flight", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -59,9 +58,11 @@ public class Flight {
     @OneToMany(mappedBy = "flight", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Staff> staffList = new ArrayList<>();
 
-    @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "airport_id")
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private Airport airport;
+
 
     public void addBooking(Booking booking){
         bookings.add(booking);

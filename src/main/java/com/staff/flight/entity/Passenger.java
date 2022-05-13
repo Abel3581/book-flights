@@ -13,7 +13,7 @@ import java.util.List;
 @Setter
 @Entity
 @Table(name = "passenger")
-public class Passenger extends User implements UserDetails {
+public class Passenger extends User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -35,6 +35,7 @@ public class ErrorHandler {
     }
 
 
+    // Para Email
     @ExceptionHandler(EmailAlreadyExistException.class)
     public ResponseEntity<?> handleEmailAlreadyExist(HttpServletRequest request,
                                                      EmailAlreadyExistException e) {

@@ -28,6 +28,7 @@ public class Airport {
     @Column(name = "iata_code")
     private String code;
 
-    @OneToMany(mappedBy = "airport",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Flight> flightLis = new ArrayList<>();
+    @OneToMany(mappedBy = "airport", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    List<Flight> flights = new ArrayList<>();
+
 }
