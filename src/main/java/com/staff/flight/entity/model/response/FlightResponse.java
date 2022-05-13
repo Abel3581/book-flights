@@ -23,25 +23,24 @@ import java.util.List;
 public class FlightResponse {
 
     private Long flightId;
-    private LocalDate departureDate;
 
-    private LocalDateTime hour;
-    // DateTimeFormatter f = DateTimeFormatter.ofPattern("hh:MM");
-    //System.out.println("Hora:mes = " + hora.format(f));
+    private LocalDateTime departureDate;
+
     @Enumerated(value = EnumType.STRING)
     private EnumFlight status;
 
     private Integer ability; //capacidad
 
-    private Integer origin;
+    private String origin;
 
-    private Integer destination;
+    private String destination;
 
-    private BigDecimal price;
+    private double price;
 
     private String currencyCode; //ARS, USD
 
     private Airport airport;
+    private long airportId;
     //private List<Booking> bookings;
     //private List<Staff> staffList;
 

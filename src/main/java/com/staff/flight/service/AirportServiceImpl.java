@@ -9,6 +9,9 @@ import com.staff.flight.service.abstraction.AirportService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
+import java.util.Optional;
+
 @RequiredArgsConstructor
 @Service
 public class AirportServiceImpl implements AirportService {
@@ -26,6 +29,15 @@ public class AirportServiceImpl implements AirportService {
     public AirportResponse getById(long id) {
         Airport airport = airportRepository.findById(id).orElseThrow();
         return airportMapper.entity2DTO(airport, false);
+    }
+
+    @Override
+    public Airport getAirport(long id) {
+       Optional<Airport> airport = airportRepository.findById(id);
+       if(airport.isEmpty()){
+           throw new EntityNotFoundException("Airport not found");
+       }
+       return airport.get();
     }
 
 }

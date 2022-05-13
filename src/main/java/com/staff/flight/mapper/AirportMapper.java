@@ -40,10 +40,20 @@ public class AirportMapper {
         AirportResponse response = new AirportResponse();
         response.setName(airport.getName());
         response.setCode(airport.getCode());
+        response.setId(airport.getAirportId());
+
         if(loadFlight){
-            List<FlightResponse> flightResponses = flightMapper.flightEntitySet2DtoList(airport.getFlightLis());
+            List<FlightResponse> flightResponses = flightMapper.flightEntitySet2DtoList(airport.getFlights());
             response.setFlightList(flightResponses);
         }
         return response;
+    }
+
+    public Airport airportDTO2EntityResponse(AirportResponse response) {
+        Airport airport = new Airport();
+        airport.setAirportId(response.getId());
+        airport.setName(response.getName());
+        airport.setCode(response.getCode());
+        return airport;
     }
 }
