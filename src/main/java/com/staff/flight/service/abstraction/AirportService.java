@@ -8,5 +8,7 @@ public interface AirportService {
     AirportResponse save(AirportRequest request);
     AirportResponse getById(long id);
 
-    Airport getAirport(long id);
+    AirportResponse getAirport(long id);
+
+    Airport getAirportBy(long airportId);
 }

@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -30,15 +31,15 @@ public class Flight {
     @Column(name = "flight_id")
     private Long flightId;
 
-    //@JsonFormat(pattern="dd/MM/yyyy")
-    private LocalDateTime departureDate;
+
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE,pattern = "yyyy-MM-dd")
+    private Date departureDate;
 
     @Enumerated(value = EnumType.STRING)
     private EnumFlight status;
 
     private Integer ability; //capacidad
-
-    //private String origin;
 
     private String destination;
 
@@ -60,9 +61,21 @@ public class Flight {
 
     @JsonIgnore
     @JoinColumn(name = "airport_id")
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private Airport airport;
 
+    public Flight(Long flightId, Date departureDate, EnumFlight status, Integer ability,
+                  String destination, Double price, String currencyCode, int occupiedSeats, Airport airport) {
+        this.flightId = flightId;
+        this.departureDate = departureDate;
+        this.status = status;
+        this.ability = ability;
+        this.destination = destination;
+        this.price = price;
+        this.currencyCode = currencyCode;
+        this.occupiedSeats = occupiedSeats;
+        this.airport = airport;
+    }
 
     public void addBooking(Booking booking){
         bookings.add(booking);
