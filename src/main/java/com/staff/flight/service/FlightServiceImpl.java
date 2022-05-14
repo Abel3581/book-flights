@@ -23,15 +23,15 @@ public class FlightServiceImpl implements FlightService {
     private final FlightMapper flightMapper;
     private final FlightRepository flightRepository;
 
-    //TODO-> este save guarda un vuelo y devuelve ese vuelo con el id del aeropuerto y guarda en el vuelo en el aeropuerto
-    //TODO-> this save saves a flight and returns that flight with the airport id and saves the flight at the airport
+    //TODO-> este save guarda un vuelo y devuelve ese vuelo con el id del aeropuerto y guarda en el aeropuerto el vuelo
+    //TODO-> this save saves a flight and returns that flight with the airport id and saves the flight in the airport
     @Override
     public FlightResponse save(FlightRequest request) {
         Flight entity = flightMapper.flightDTO2Entity(request);
         Airport airport = airportService.getAirportBy(request.getAirportId());
         entity.setAirport(airport);
         Flight flightSave = flightRepository.save(entity);
-        airport.addFlights(flightSave);//Guardo el vuelo en el aeropuerto
+        airport.addFlights(flightSave);//I save the flight at the airport
         return flightMapper.flightEntity2DTO(flightSave);
     }
 }

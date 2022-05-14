@@ -12,6 +12,8 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.Temporal;
+import java.util.Date;
 import java.util.List;
 
 
@@ -32,7 +34,7 @@ public class FlightMapper {
         entity.setDestination(request.getDestination());
         entity.setPrice(request.getPrice());
         entity.setStatus(EnumFlight.INPROCESS);
-        entity.setDepartureDate(LocalDateTime.now());
+        entity.setDepartureDate(request.getDepartureDate());
 
         return entity;
     }

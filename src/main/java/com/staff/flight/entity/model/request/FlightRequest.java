@@ -7,17 +7,23 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter @Setter
 public class FlightRequest {
 
-    @JsonFormat(pattern="dd/MM/yyyy")
-    private LocalDateTime departureDate;
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE,pattern = "yyyy-MM-dd")
+    private Date departureDate;
 
     // DateTimeFormatter f = DateTimeFormatter.ofPattern("hh:MM");
     //System.out.println("Hora:mes = " + hora.format(f));
