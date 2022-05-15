@@ -28,4 +28,10 @@ public class FlightController {
         FlightResponse response = flightService.getFlightBy(id);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleted(@PathVariable Long id)throws EntityNotFoundException{
+        flightService.deleted(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
 }
