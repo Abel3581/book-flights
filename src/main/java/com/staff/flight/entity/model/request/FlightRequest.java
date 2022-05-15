@@ -21,12 +21,8 @@ import java.util.Date;
 @Getter @Setter
 public class FlightRequest {
 
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE,pattern = "yyyy-MM-dd")
-    private Date departureDate;
-
-    // DateTimeFormatter f = DateTimeFormatter.ofPattern("hh:MM");
-    //System.out.println("Hora:mes = " + hora.format(f));
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss[.SSS][.SS][.S]")
+    private LocalDateTime departureDate;
 
     @Enumerated(value = EnumType.STRING)
     private EnumFlight status;

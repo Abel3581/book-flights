@@ -1,25 +1,17 @@
 package com.staff.flight.mapper;
 
-import com.staff.flight.entity.Airport;
+
 import com.staff.flight.entity.Flight;
 import com.staff.flight.entity.model.enums.EnumFlight;
 import com.staff.flight.entity.model.request.FlightRequest;
 import com.staff.flight.entity.model.response.FlightResponse;
-import com.staff.flight.service.abstraction.AirportService;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.Temporal;
-import java.util.Date;
+import org.springframework.stereotype.Component;
 import java.util.List;
 
 
 @Component
 public class FlightMapper {
-
 
 
     public List<FlightResponse> flightEntitySet2DtoList(List<Flight> flightLis) {
@@ -49,6 +41,7 @@ public class FlightMapper {
         response.setPrice(flight.getPrice());
         response.setAirportId(flight.getAirport().getAirportId());
         response.setDepartureDate(flight.getDepartureDate());
+
         return response;
     }
 }

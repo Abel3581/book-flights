@@ -1,5 +1,6 @@
 package com.staff.flight.config.security;
 
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.staff.flight.config.JwtRequestFilters;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfi
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -27,6 +29,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @SpringBootApplication(exclude = SecurityAutoConfiguration.class)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
 
     private final JwtRequestFilters jwtRequestFilters;
 
@@ -59,6 +62,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST,"/auth/register").permitAll()
                 .antMatchers(HttpMethod.POST,"/auth/login").permitAll()
                 .antMatchers(HttpMethod.POST,"/flight").permitAll()
+                .antMatchers(HttpMethod.GET,"/flight/{id}").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()

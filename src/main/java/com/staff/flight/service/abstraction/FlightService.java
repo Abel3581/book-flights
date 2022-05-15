@@ -5,4 +5,6 @@ import com.staff.flight.entity.model.response.FlightResponse;
 
 public interface FlightService {
     FlightResponse save(FlightRequest request) throws Exception;
+
+    FlightResponse getFlightBy(Long id);
 }
