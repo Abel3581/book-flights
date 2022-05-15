@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
 
 @RequiredArgsConstructor
@@ -27,5 +28,11 @@ public class AirportController {
     public ResponseEntity<AirportResponse> getById(@PathVariable long id){
        AirportResponse response = service.getById(id);
        return ResponseEntity.ok().body(response);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleted(@PathVariable Long id) throws EntityNotFoundException {
+        service.deleted(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }

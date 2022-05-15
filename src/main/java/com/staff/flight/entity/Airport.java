@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@SQLDelete(sql = "UPDATE airport SET soft_delete=true WHERE id=?")
+@SQLDelete(sql = "UPDATE airport SET soft_delete=true airport_id=?")
 @Where(clause = "soft_delete=false")
 @Builder
 @NoArgsConstructor

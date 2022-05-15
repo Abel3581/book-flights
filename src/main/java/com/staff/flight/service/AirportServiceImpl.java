@@ -54,4 +54,11 @@ public class AirportServiceImpl implements AirportService {
         return airport.get();
     }
 
+    @Override
+    public void deleted(Long id) throws EntityNotFoundException {
+        Airport airport = getAirportBy(id);
+        airport.setSoftDelete(true);
+        airportRepository.save(airport);
+    }
+
 }
