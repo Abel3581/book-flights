@@ -15,4 +15,6 @@ public interface AirportService {
     Airport getAirportBy(long airportId);
 
     void deleted(Long id)throws EntityNotFoundException;
+
+    AirportResponse update(Long id, AirportRequest request);
 }

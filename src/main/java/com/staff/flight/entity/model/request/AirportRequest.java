@@ -10,4 +10,5 @@ public class AirportRequest {
 
     private String name;
     private String code;
+
 }

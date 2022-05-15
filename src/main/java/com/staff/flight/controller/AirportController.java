@@ -35,4 +35,12 @@ public class AirportController {
         service.deleted(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<AirportResponse> update(@PathVariable Long id, @RequestBody AirportRequest request){
+       AirportResponse response = service.update(id, request);
+       return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
+
 }

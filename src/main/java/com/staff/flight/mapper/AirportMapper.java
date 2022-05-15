@@ -31,6 +31,7 @@ public class AirportMapper {
         return AirportResponse.builder()
                 .name(entity.getName())
                 .code(entity.getCode())
+                .id(entity.getAirportId())
                 .build();
     }
 
@@ -55,5 +56,10 @@ public class AirportMapper {
         airport.setName(response.getName());
         airport.setCode(response.getCode());
         return airport;
+    }
+
+    public void airportRefreshValues(Airport airport, AirportRequest request) {
+        airport.setName(request.getName());
+        airport.setCode(request.getCode());
     }
 }
