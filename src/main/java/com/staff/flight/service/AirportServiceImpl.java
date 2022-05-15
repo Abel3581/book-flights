@@ -25,10 +25,11 @@ public class AirportServiceImpl implements AirportService {
             Airport saved = airportRepository.save(airportEntity);
             return airportMapper.airportEntity2DTO(saved);
     }
+    //Returns the airport + flights from that airport
     @Override
     public AirportResponse getById(long id) {
         Airport airport = airportRepository.findById(id).orElseThrow();
-        return airportMapper.entity2DTO(airport, false);
+        return airportMapper.entity2DTO(airport, true);
     }
 
     @Override
