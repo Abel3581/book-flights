@@ -62,4 +62,15 @@ public class AirportServiceImpl implements AirportService {
         airportRepository.save(airport);
     }
 
+    @Override
+    public AirportResponse update(Long id, AirportRequest request) {
+        Optional<Airport> airportOptional = airportRepository.findById(id);
+        if(airportOptional.isEmpty()){
+            throw new RuntimeException("Airport is not valid");
+        }
+        airportMapper.airportRefreshValues(airportOptional.get(),request);
+        Airport airportSaved = airportRepository.save(airportOptional.get());
+        return airportMapper.airportEntity2DTO(airportSaved);
+    }
+
 }
