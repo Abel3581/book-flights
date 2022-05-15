@@ -7,6 +7,9 @@ import com.staff.flight.entity.model.request.FlightRequest;
 import com.staff.flight.entity.model.response.FlightResponse;
 
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 
@@ -14,8 +17,12 @@ import java.util.List;
 public class FlightMapper {
 
 
-    public List<FlightResponse> flightEntitySet2DtoList(List<Flight> flightLis) {
-        return null;
+    public List<FlightResponse> flightEntitySet2DtoList(Collection<Flight> flights) {
+        List<FlightResponse> responses = new ArrayList<>();
+        for(Flight f: flights){
+            responses.add(flightEntity2DTO(f));
+        }
+        return responses;
 
     }
 
