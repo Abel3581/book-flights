@@ -6,6 +6,7 @@ import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,6 +42,15 @@ public class Airport {
 
     public void addFlights(Flight flight){
         flights.add(flight);
+    }
+
+    public boolean airportContains(LocalDateTime localDateTime){
+      for (Flight f: flights){
+          if(f.getDepartureDate().equals(localDateTime)){
+              return true;
+          }
+      }
+      return false;
     }
 
 }

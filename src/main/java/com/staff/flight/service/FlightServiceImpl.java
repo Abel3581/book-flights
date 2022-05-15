@@ -13,6 +13,7 @@ import com.staff.flight.service.abstraction.FlightService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.Optional;
 
 @RequiredArgsConstructor
@@ -32,9 +33,13 @@ public class FlightServiceImpl implements FlightService {
         Flight entity = flightMapper.flightDTO2Entity(request);
         Airport airport = airportService.getAirportBy(request.getAirportId());
         entity.setAirport(airport);
-        Flight flightSave = flightRepository.save(entity);
-        airport.addFlights(flightSave);//I save the flight at the airport
-        return flightMapper.flightEntity2DTO(flightSave);
+        if(airport.airportContains(entity.getDepartureDate())){
+            throw new RuntimeException("This flight is already registered");
+        }else {
+            Flight flightSave = flightRepository.save(entity);
+            airport.addFlights(flightSave);//I save the flight at the airport
+            return flightMapper.flightEntity2DTO(flightSave);
+        }
     }
     @Override
     public FlightResponse getFlightBy(Long id) {
@@ -42,5 +47,20 @@ public class FlightServiceImpl implements FlightService {
        FlightResponse response = flightMapper.flightEntity2DTO(flight);
        response.setAirport(airportService.getAirport(flight.getAirport().getAirportId()));
        return response;
+    }
+
+    @Override
+    public void deleted(Long id)throws EntityNotFoundException{
+        Flight flight = getFlightById(id);
+        flight.setSoftDelete(true);
+        flightRepository.save(flight);
+    }
+
+    public Flight getFlightById(Long id) {
+        Optional<Flight> flight = flightRepository.findById(id);
+        if(flight.isEmpty() || flight.get().isSoftDelete()){
+            throw new EntityNotFoundException("Flight not found");
+        }
+        return flight.get();
     }
 }

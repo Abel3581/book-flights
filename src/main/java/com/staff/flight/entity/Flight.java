@@ -2,22 +2,20 @@ package com.staff.flight.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.staff.flight.entity.model.enums.EnumFlight;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.format.annotation.DateTimeFormat;
-
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 import javax.persistence.*;
-import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
+@SQLDelete(sql = "UPDATE flight SET soft_delete=true flight_id=?")
+@Where(clause = "soft_delete=false")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -47,6 +45,9 @@ public class Flight {
     private String currencyCode; //ARS, USD
 
     private int occupiedSeats; //Asientos ocupados
+
+    @Column(name = "soft_delete")
+    private boolean softDelete = Boolean.FALSE;
 
     @Column(nullable = true)
     @OneToMany(mappedBy = "flight", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
