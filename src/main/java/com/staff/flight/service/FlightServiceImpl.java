@@ -13,6 +13,8 @@ import com.staff.flight.service.abstraction.FlightService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @RequiredArgsConstructor
 @Service
 public class FlightServiceImpl implements FlightService {
@@ -33,5 +35,12 @@ public class FlightServiceImpl implements FlightService {
         Flight flightSave = flightRepository.save(entity);
         airport.addFlights(flightSave);//I save the flight at the airport
         return flightMapper.flightEntity2DTO(flightSave);
+    }
+    @Override
+    public FlightResponse getFlightBy(Long id) {
+       Flight flight = flightRepository.findById(id).orElseThrow();
+       FlightResponse response = flightMapper.flightEntity2DTO(flight);
+       response.setAirport(airportService.getAirport(flight.getAirport().getAirportId()));
+       return response;
     }
 }

@@ -31,10 +31,8 @@ public class Flight {
     @Column(name = "flight_id")
     private Long flightId;
 
-
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE,pattern = "yyyy-MM-dd")
-    private Date departureDate;
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss[.SSS][.SS][.S]")
+    private LocalDateTime departureDate;
 
     @Enumerated(value = EnumType.STRING)
     private EnumFlight status;
@@ -64,7 +62,7 @@ public class Flight {
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private Airport airport;
 
-    public Flight(Long flightId, Date departureDate, EnumFlight status, Integer ability,
+    public Flight(Long flightId, LocalDateTime departureDate, EnumFlight status, Integer ability,
                   String destination, Double price, String currencyCode, int occupiedSeats, Airport airport) {
         this.flightId = flightId;
         this.departureDate = departureDate;

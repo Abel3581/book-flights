@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
 
 @RequiredArgsConstructor
@@ -20,5 +21,11 @@ public class FlightController {
     public ResponseEntity<FlightResponse> save(@Valid @RequestBody FlightRequest request) throws Exception {
         FlightResponse response = flightService.save(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<FlightResponse> getFlightBy(@PathVariable Long id) {
+        FlightResponse response = flightService.getFlightBy(id);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 }
