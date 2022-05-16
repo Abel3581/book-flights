@@ -51,4 +51,28 @@ public class FlightMapper {
 
         return response;
     }
+
+    public void flightRefreshValues(Flight flight, FlightRequest request) {
+        flight.setAbility(request.getAbility());
+        flight.setDestination(request.getDestination());
+        flight.setCurrencyCode(request.getCurrencyCode());
+        flight.setStatus(request.getStatus());
+        flight.setPrice(request.getPrice());
+        flight.setDepartureDate(request.getDepartureDate());
+        flight.setStatus(request.getStatus());
+
+    }
+
+    public FlightResponse flightEntity2DTORefresh(Flight flight) {
+        FlightResponse response = new FlightResponse();
+        response.setAbility(flight.getAbility());
+        response.setFlightId(flight.getFlightId());
+        response.setDestination(flight.getDestination());
+        response.setCurrencyCode(flight.getCurrencyCode());
+        response.setStatus(flight.getStatus());
+        response.setPrice(flight.getPrice());
+        response.setAirportId(flight.getAirport().getAirportId());
+        response.setDepartureDate(flight.getDepartureDate());
+        return response;
+    }
 }

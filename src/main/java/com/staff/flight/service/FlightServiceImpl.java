@@ -63,4 +63,16 @@ public class FlightServiceImpl implements FlightService {
         }
         return flight.get();
     }
+
+    @Override
+    public FlightResponse update(Long id, FlightRequest request) {
+        Optional<Flight> flight = flightRepository.findById(id);
+        if(flight.isEmpty()){
+            throw new RuntimeException("Flight not found");
+        }
+        flightMapper.flightRefreshValues(flight.get(), request);
+        Flight flightSaved = flightRepository.save(flight.get());
+        FlightResponse response = flightMapper.flightEntity2DTORefresh(flightSaved);
+        return response;
+    }
 }

@@ -79,4 +79,7 @@ public class Flight {
     public void addBooking(Booking booking){
         bookings.add(booking);
     }
+    public void changeId(long idAirport){
+        airport.setAirportId(idAirport);
+    }
 }
