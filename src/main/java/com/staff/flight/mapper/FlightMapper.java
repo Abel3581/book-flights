@@ -62,7 +62,6 @@ public class FlightMapper {
         flight.setStatus(request.getStatus());
 
     }
-
     public FlightResponse flightEntity2DTORefresh(Flight flight) {
         FlightResponse response = new FlightResponse();
         response.setAbility(flight.getAbility());

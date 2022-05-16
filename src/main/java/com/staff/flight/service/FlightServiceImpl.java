@@ -72,7 +72,6 @@ public class FlightServiceImpl implements FlightService {
         }
         flightMapper.flightRefreshValues(flight.get(), request);
         Flight flightSaved = flightRepository.save(flight.get());
-        FlightResponse response = flightMapper.flightEntity2DTORefresh(flightSaved);
-        return response;
+        return flightMapper.flightEntity2DTORefresh(flightSaved);
     }
 }
