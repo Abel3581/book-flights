@@ -14,4 +14,6 @@ public interface FlightService {
     void deleted(Long id)throws EntityNotFoundException;
 
     Flight getFlightById(Long id);
+
+    FlightResponse update(Long id, FlightRequest request);
 }

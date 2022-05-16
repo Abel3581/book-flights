@@ -24,7 +24,7 @@ public class Airport {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "airport_id")
+    @Column(name = "airport_id",updatable = true)
     private Long airportId;
 
     @NotEmpty(message = "The name is required and cannot be null or empty")

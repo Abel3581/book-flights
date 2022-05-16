@@ -34,4 +34,12 @@ public class FlightController {
         flightService.deleted(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<FlightResponse> update(@PathVariable Long id, @RequestBody FlightRequest request){
+        FlightResponse response = flightService.update(id, request);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
+
 }
