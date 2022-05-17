@@ -34,7 +34,6 @@ public class FlightMapper {
         entity.setPrice(request.getPrice());
         entity.setStatus(EnumFlight.INPROCESS);
         entity.setDepartureDate(request.getDepartureDate());
-
         return entity;
     }
 
