@@ -80,7 +80,6 @@ public class FlightServiceImpl implements FlightService {
     @Override
     public List<FlightResponse> getAll() {
         List<Flight> flights = flightRepository.findAll();
-        List<FlightResponse> responses = flightMapper.flightEntitySet2DtoList(flights);
-        return responses;
+        return flightMapper.flightEntitySet2DtoList(flights);
     }
 }

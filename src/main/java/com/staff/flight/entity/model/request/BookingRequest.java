@@ -1,5 +1,8 @@
-package com.staff.flight.entity;
+package com.staff.flight.entity.model.request;
 
+import com.staff.flight.entity.Flight;
+import com.staff.flight.entity.Passage;
+import com.staff.flight.entity.Passenger;
 import com.staff.flight.entity.model.enums.EnumBooking;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,20 +12,12 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-@Entity
-@Table(name = "booking")
-public class Booking {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "booking_id")
-    private Long bookingId;
+public class BookingRequest {
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime issue;//fecha_emision
@@ -33,17 +28,11 @@ public class Booking {
     @Enumerated(value = EnumType.STRING)
     private EnumBooking conditions;
 
-    @ManyToOne
-    @JoinColumn(name = "passenger_id")
     private Passenger passenger;
 
-    //@JsonIgnore
-    @OneToOne(mappedBy = "booking",cascade = CascadeType.ALL, fetch = FetchType.EAGER )
+    //@JsonIgnore)
     private Passage passage;
 
-    @ManyToOne
-    //@JsonIgnore
-    @JoinColumn(name = "flight_id")
     private Flight flight;
 
 }

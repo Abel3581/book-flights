@@ -1,6 +1,7 @@
 package com.staff.flight.mapper;
 import com.staff.flight.entity.Passenger;
 import com.staff.flight.entity.model.request.PassengerRegisterRequest;
+import com.staff.flight.entity.model.response.InfoUserResponse;
 import com.staff.flight.entity.model.response.PassengerRegisterResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -33,5 +34,19 @@ public class PassengerMapper {
         response.setFirstName(passenger.getFirstName());
         response.setLastName(passenger.getLastName());
         return response;
+    }
+
+    public InfoUserResponse passengerEntity2DTO(Passenger passenger, boolean loadBookings) {
+        InfoUserResponse infoUser = new InfoUserResponse();
+        infoUser.setCountry(passenger.getCountry());
+        infoUser.setDni(passenger.getDni());
+        infoUser.setFirstName(passenger.getFirstName());
+        infoUser.setLastName(passenger.getLastName());
+        infoUser.setEmail(passenger.getEmail());
+        infoUser.setPassword(passenger.getPassword());
+        if(loadBookings){
+            //Falta terminar
+        }
+        return infoUser;
     }
 }

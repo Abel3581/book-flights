@@ -30,4 +30,8 @@ public class Passenger extends User {
         this.bookings = bookings;
     }
 
+    public void addBooking(Booking booking){
+        bookings.add(booking);
+    }
+
 }

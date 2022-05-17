@@ -7,9 +7,11 @@ import com.staff.flight.entity.Role;
 import com.staff.flight.entity.model.enums.ApplicationRole;
 import com.staff.flight.entity.model.request.PassengerAuthenticationRequest;
 import com.staff.flight.entity.model.request.PassengerRegisterRequest;
+import com.staff.flight.entity.model.response.InfoUserResponse;
 import com.staff.flight.entity.model.response.PassengerAuthenticatedResponse;
 import com.staff.flight.entity.model.response.PassengerRegisterResponse;
 import com.staff.flight.exception.EmailAlreadyExistException;
+import com.staff.flight.exception.NotFoundExceptions;
 import com.staff.flight.mapper.PassengerMapper;
 import com.staff.flight.repository.PassengerRepository;
 import com.staff.flight.service.abstraction.PassengerService;
@@ -18,6 +20,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -66,6 +69,14 @@ public class PassengerServiceImpl  implements PassengerService, UserDetailsServi
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(),request.getPassword()));
         return new PassengerAuthenticatedResponse(jwt.generateToken(passenger), passenger.getEmail(), passenger.getAuthorities());
 
+    }
+
+    @Override
+    public InfoUserResponse infoUserLogged() throws NotFoundExceptions {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Passenger passengerLogged = passengerRepository.findByEmail(principal.toString());
+        InfoUserResponse response = passengerMapper.passengerEntity2DTO(passengerLogged, false);
+        return response;
     }
 
     private Passenger getPassenger(String email) {
