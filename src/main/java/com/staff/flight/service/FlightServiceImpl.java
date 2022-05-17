@@ -64,13 +64,14 @@ public class FlightServiceImpl implements FlightService {
         return flight.get();
     }
 
-    @Override
+    @Override // Actualiza el vuelo y su aeropuerto -> Update the flight and its airport
     public FlightResponse update(Long id, FlightRequest request) {
         Optional<Flight> flight = flightRepository.findById(id);
         if(flight.isEmpty()){
             throw new RuntimeException("Flight not found");
         }
         flightMapper.flightRefreshValues(flight.get(), request);
+        flight.get().setAirport(airportService.getAirportBy(request.getAirportId()));
         Flight flightSaved = flightRepository.save(flight.get());
         return flightMapper.flightEntity2DTORefresh(flightSaved);
     }
