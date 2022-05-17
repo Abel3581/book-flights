@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
+import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
@@ -40,6 +41,16 @@ public class FlightController {
         FlightResponse response = flightService.update(id, request);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<FlightResponse>> getAll(){
+        List<FlightResponse> response = flightService.getAll();
+        return ResponseEntity.ok().body(response);
+
+
+    }
+
+
 
 
 }

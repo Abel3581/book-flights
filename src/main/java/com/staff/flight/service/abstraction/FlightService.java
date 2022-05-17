@@ -5,6 +5,7 @@ import com.staff.flight.entity.model.request.FlightRequest;
 import com.staff.flight.entity.model.response.FlightResponse;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.List;
 
 public interface FlightService {
     FlightResponse save(FlightRequest request) throws Exception;
@@ -16,4 +17,6 @@ public interface FlightService {
     Flight getFlightById(Long id);
 
     FlightResponse update(Long id, FlightRequest request);
+
+    List<FlightResponse> getAll();
 }
