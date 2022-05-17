@@ -14,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor
@@ -34,7 +35,7 @@ public class FlightServiceImpl implements FlightService {
         Airport airport = airportService.getAirportBy(request.getAirportId());
         entity.setAirport(airport);
         if(airport.airportContains(entity.getDepartureDate())){
-            throw new RuntimeException("This flight is already registered");
+            throw new RuntimeException("This schedule is already in use");
         }else {
             Flight flightSave = flightRepository.save(entity);
             airport.addFlights(flightSave);//I save the flight at the airport
@@ -74,5 +75,12 @@ public class FlightServiceImpl implements FlightService {
         flight.get().setAirport(airportService.getAirportBy(request.getAirportId()));
         Flight flightSaved = flightRepository.save(flight.get());
         return flightMapper.flightEntity2DTORefresh(flightSaved);
+    }
+
+    @Override
+    public List<FlightResponse> getAll() {
+        List<Flight> flights = flightRepository.findAll();
+        List<FlightResponse> responses = flightMapper.flightEntitySet2DtoList(flights);
+        return responses;
     }
 }
