@@ -25,11 +25,11 @@ public class User implements UserDetails {
     private String firstName;
     @Column(nullable = false)
     private String lastName;
-   // @NotBlank(message = "Email cannot be empty.")
+    @NotBlank(message = "Email cannot be empty.")
     @Column(unique = true, nullable = false)
     private String email; // es el username
-   // @NotBlank(message = "Password cannot be empty.")
-   // @Size(min = 8, max = 250, message = "Password should have at least 8 characters")
+    @NotBlank(message = "Password cannot be empty.")
+    @Size(min = 8, max = 250, message = "Password should have at least 8 characters")
     private String password;
     @CreationTimestamp
     private Timestamp timestamp;
