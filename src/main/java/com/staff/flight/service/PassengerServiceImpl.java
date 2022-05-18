@@ -4,6 +4,7 @@ package com.staff.flight.service;
 import com.staff.flight.config.JwtUtil;
 import com.staff.flight.entity.Passenger;
 import com.staff.flight.entity.Role;
+import com.staff.flight.entity.User;
 import com.staff.flight.entity.model.enums.ApplicationRole;
 import com.staff.flight.entity.model.request.PassengerAuthenticationRequest;
 import com.staff.flight.entity.model.request.PassengerRegisterRequest;
@@ -18,6 +19,7 @@ import com.staff.flight.service.abstraction.PassengerService;
 import com.staff.flight.service.abstraction.RoleService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -44,6 +46,7 @@ public class PassengerServiceImpl  implements PassengerService, UserDetailsServi
 
     private final PasswordEncoder passwordEncoder;
 
+
     private final AuthenticationManager authenticationManager;
 
     @Transactional
@@ -67,7 +70,7 @@ public class PassengerServiceImpl  implements PassengerService, UserDetailsServi
     public PassengerAuthenticatedResponse authentication(PassengerAuthenticationRequest request){
         Passenger passenger = getPassenger(request.getEmail());
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(),request.getPassword()));
-        return new PassengerAuthenticatedResponse(jwt.generateToken(passenger), passenger.getEmail(), passenger.getAuthorities());
+        return new PassengerAuthenticatedResponse(jwt.generateToken(passenger), passenger.getEmail(),passenger.getAuthorities());
 
     }
 
@@ -89,7 +92,17 @@ public class PassengerServiceImpl  implements PassengerService, UserDetailsServi
     }
 
     @Override
+    @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return getPassenger(username);
+    }
+
+
+    @Override
+    @Transactional
+    public Passenger findByEmail(String email) {
+
+        return passengerRepository.findByEmail(email);
+
     }
 }
