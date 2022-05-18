@@ -1,5 +1,6 @@
 package com.staff.flight.service.abstraction;
 
+import com.staff.flight.entity.Passenger;
 import com.staff.flight.entity.model.request.PassengerAuthenticationRequest;
 import com.staff.flight.entity.model.request.PassengerRegisterRequest;
 import com.staff.flight.entity.model.response.InfoUserResponse;
@@ -14,4 +15,6 @@ public interface PassengerService {
     PassengerAuthenticatedResponse authentication(PassengerAuthenticationRequest request);
 
     InfoUserResponse infoUserLogged() throws NotFoundExceptions;
+
+    public Passenger findByEmail(String email);
 }
