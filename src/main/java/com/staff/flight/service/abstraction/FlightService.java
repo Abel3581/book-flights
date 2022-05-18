@@ -19,4 +19,7 @@ public interface FlightService {
     FlightResponse update(Long id, FlightRequest request);
 
     List<FlightResponse> getAll();
+
+
+    List<FlightResponse> getFlightByName(String destination);
 }

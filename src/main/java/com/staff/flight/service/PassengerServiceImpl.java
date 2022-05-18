@@ -19,7 +19,6 @@ import com.staff.flight.service.abstraction.PassengerService;
 import com.staff.flight.service.abstraction.RoleService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -78,8 +77,7 @@ public class PassengerServiceImpl  implements PassengerService, UserDetailsServi
     public InfoUserResponse infoUserLogged() throws NotFoundExceptions {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Passenger passengerLogged = passengerRepository.findByEmail(principal.toString());
-        InfoUserResponse response = passengerMapper.passengerEntity2DTO(passengerLogged, false);
-        return response;
+        return passengerMapper.passengerEntity2DTO(passengerLogged, false);
     }
 
     private Passenger getPassenger(String email) {
@@ -97,12 +95,22 @@ public class PassengerServiceImpl  implements PassengerService, UserDetailsServi
         return getPassenger(username);
     }
 
-
     @Override
     @Transactional
     public Passenger findByEmail(String email) {
 
         return passengerRepository.findByEmail(email);
 
+    }
+    @Override
+    public User getInfoUser() throws NotFoundExceptions {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof User) {
+            String username = ((User)principal).getUsername();
+        } else {
+            String username = principal.toString();
+        }
+
+        return passengerRepository.findByEmail(principal.toString());
     }
 }

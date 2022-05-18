@@ -44,8 +44,10 @@ public class PassengerMapper {
         infoUser.setLastName(passenger.getLastName());
         infoUser.setEmail(passenger.getEmail());
         infoUser.setPassword(passenger.getPassword());
+        infoUser.setId(passenger.getPassengerId());
         if(loadBookings){
-            //Falta terminar
+            //TODO Falta terminar que devuelva las reservas.
+            // It remains to finish that it returns the reservations.
         }
         return infoUser;
     }

@@ -1,5 +1,6 @@
 package com.staff.flight.controller;
 
+import com.staff.flight.entity.User;
 import com.staff.flight.entity.model.request.PassengerAuthenticationRequest;
 import com.staff.flight.entity.model.request.PassengerRegisterRequest;
 import com.staff.flight.entity.model.response.InfoUserResponse;
@@ -40,6 +41,11 @@ public class AuthenticationController {
     @GetMapping("/me")
     public ResponseEntity<InfoUserResponse> infoUserLogged()throws NotFoundExceptions {
         return new ResponseEntity<>(passengerService.infoUserLogged(), HttpStatus.OK);
+    }
+
+    @GetMapping("/mee")
+    public ResponseEntity<User> userLogged() throws NotFoundExceptions {
+        return new ResponseEntity<>(passengerService.getInfoUser(), HttpStatus.OK);
     }
 
 

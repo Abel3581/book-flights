@@ -82,4 +82,10 @@ public class FlightServiceImpl implements FlightService {
         List<Flight> flights = flightRepository.findAll();
         return flightMapper.flightEntitySet2DtoList(flights);
     }
+
+    @Override
+    public List<FlightResponse> getFlightByName(String destination) {
+        List<Flight> flights = flightRepository.findByDestination(destination);
+        return flightMapper.flightEntitySet2DtoList(flights);
+    }
 }

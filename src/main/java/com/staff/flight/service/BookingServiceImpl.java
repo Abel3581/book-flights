@@ -13,6 +13,7 @@ public class BookingServiceImpl implements BookingService {
 
     private final BookingRepository bookingRepository;
     private final BookingMapper bookingMapper;
+    //private final PassengerService passengerService;
     @Override
     public BookingResponse save(BookingRequest request) {
 

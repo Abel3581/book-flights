@@ -46,9 +46,14 @@ public class FlightController {
     public ResponseEntity<List<FlightResponse>> getAll(){
         List<FlightResponse> response = flightService.getAll();
         return ResponseEntity.ok().body(response);
-
-
     }
+
+    @GetMapping("/destination")
+    public ResponseEntity<List<FlightResponse>> getFlightByName(@RequestParam String destination){
+        List<FlightResponse> response = flightService.getFlightByName(destination);
+        return ResponseEntity.ok().body(response);
+    }
+
 
 
 
