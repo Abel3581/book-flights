@@ -33,7 +33,6 @@ public class FlightMapper {
         entity.setDestination(request.getDestination());
         entity.setPrice(request.getPrice());
         entity.setStatus(EnumFlight.INPROCESS);
-        entity.setDepartureDate(request.getDepartureDate());
         return entity;
     }
 
@@ -46,7 +45,6 @@ public class FlightMapper {
         response.setStatus(flight.getStatus());
         response.setPrice(flight.getPrice());
         response.setAirportId(flight.getAirport().getAirportId());
-        response.setDepartureDate(flight.getDepartureDate());
 
         return response;
     }
@@ -57,7 +55,6 @@ public class FlightMapper {
         flight.setCurrencyCode(request.getCurrencyCode());
         flight.setStatus(request.getStatus());
         flight.setPrice(request.getPrice());
-        flight.setDepartureDate(request.getDepartureDate());
         flight.setStatus(request.getStatus());
 
     }
@@ -70,7 +67,6 @@ public class FlightMapper {
         response.setStatus(flight.getStatus());
         response.setPrice(flight.getPrice());
         response.setAirportId(flight.getAirport().getAirportId());
-        response.setDepartureDate(flight.getDepartureDate());
         return response;
     }
 }

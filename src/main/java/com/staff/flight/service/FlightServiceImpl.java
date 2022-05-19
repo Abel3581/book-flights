@@ -21,8 +21,7 @@ import java.util.Optional;
 @Service
 public class FlightServiceImpl implements FlightService {
 
-    private final AirportMapper airportMapper;
-
+   // private final AirportMapper airportMapper;
     private final AirportService airportService;
     private final FlightMapper flightMapper;
     private final FlightRepository flightRepository;
@@ -34,13 +33,10 @@ public class FlightServiceImpl implements FlightService {
         Flight entity = flightMapper.flightDTO2Entity(request);
         Airport airport = airportService.getAirportBy(request.getAirportId());
         entity.setAirport(airport);
-        if(airport.airportContains(entity.getDepartureDate())){
-            throw new RuntimeException("This schedule is already in use");
-        }else {
-            Flight flightSave = flightRepository.save(entity);
-            airport.addFlights(flightSave);//I save the flight at the airport
-            return flightMapper.flightEntity2DTO(flightSave);
-        }
+        Flight flightSave = flightRepository.save(entity);
+        airport.addFlights(flightSave);//I save the flight at the airport
+        return flightMapper.flightEntity2DTO(flightSave);
+
     }
     @Override
     public FlightResponse getFlightBy(Long id) {

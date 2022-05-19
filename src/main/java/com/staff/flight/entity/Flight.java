@@ -29,9 +29,6 @@ public class Flight {
     @Column(name = "flight_id")
     private Long flightId;
 
-    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss[.SSS][.SS][.S]")
-    private LocalDateTime departureDate;
-
     @Enumerated(value = EnumType.STRING)
     private EnumFlight status;
 
@@ -63,10 +60,10 @@ public class Flight {
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private Airport airport;
 
-    public Flight(Long flightId, LocalDateTime departureDate, EnumFlight status, Integer ability,
-                  String destination, Double price, String currencyCode, int occupiedSeats, Airport airport) {
+    public Flight(Long flightId, EnumFlight status, Integer ability, String destination, Double price,
+                  String currencyCode, int occupiedSeats, Airport airport) {
+
         this.flightId = flightId;
-        this.departureDate = departureDate;
         this.status = status;
         this.ability = ability;
         this.destination = destination;

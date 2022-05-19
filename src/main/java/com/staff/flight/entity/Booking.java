@@ -1,5 +1,6 @@
 package com.staff.flight.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.staff.flight.entity.model.enums.EnumBooking;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,11 +25,14 @@ public class Booking {
     @Column(name = "booking_id")
     private Long bookingId;
 
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss[.SSS][.SS][.S]")
     private LocalDateTime issue;//fecha_emision
 
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss[.SSS][.SS][.S]")
     private LocalDateTime expiration;//fecha_vencimiento
+
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss[.SSS][.SS][.S]")
+    private LocalDateTime departureDate;//fecha de salida
 
     @Enumerated(value = EnumType.STRING)
     private EnumBooking conditions;
