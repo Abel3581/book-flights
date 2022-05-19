@@ -44,13 +44,6 @@ public class Airport {
         flights.add(flight);
     }
 
-    public boolean airportContains(LocalDateTime localDateTime){
-      for (Flight f: flights){
-          if(f.getDepartureDate().equals(localDateTime)){
-              return true;
-          }
-      }
-      return false;
-    }
+
 
 }

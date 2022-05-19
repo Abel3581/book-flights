@@ -1,14 +1,11 @@
 package com.staff.flight.entity.model.response;
 
 
-import com.staff.flight.entity.Airport;
-
 import com.staff.flight.entity.model.enums.EnumFlight;
 import lombok.*;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 
-import java.time.LocalDateTime;
 
 
 @Builder
@@ -19,8 +16,6 @@ import java.time.LocalDateTime;
 public class FlightResponse {
 
     private Long flightId;
-
-    private LocalDateTime departureDate;
 
     @Enumerated(value = EnumType.STRING)
     private EnumFlight status;
