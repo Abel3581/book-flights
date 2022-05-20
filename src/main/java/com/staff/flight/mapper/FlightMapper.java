@@ -20,7 +20,7 @@ public class FlightMapper {
     public List<FlightResponse> flightEntitySet2DtoList(Collection<Flight> flights) {
         List<FlightResponse> responses = new ArrayList<>();
         for(Flight f: flights){
-            responses.add(flightEntity2DTO(f));
+            responses.add(flightEntity2DTO(f,false));
         }
         return responses;
 
@@ -36,7 +36,7 @@ public class FlightMapper {
         return entity;
     }
 
-    public FlightResponse flightEntity2DTO(Flight flight) {
+    public FlightResponse flightEntity2DTO(Flight flight, boolean loadBooking) {
         FlightResponse response = new FlightResponse();
         response.setAbility(flight.getAbility());
         response.setFlightId(flight.getFlightId());

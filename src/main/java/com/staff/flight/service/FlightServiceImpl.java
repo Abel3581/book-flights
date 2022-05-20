@@ -35,13 +35,13 @@ public class FlightServiceImpl implements FlightService {
         entity.setAirport(airport);
         Flight flightSave = flightRepository.save(entity);
         airport.addFlights(flightSave);//I save the flight at the airport
-        return flightMapper.flightEntity2DTO(flightSave);
+        return flightMapper.flightEntity2DTO(flightSave,false);
 
     }
     @Override
     public FlightResponse getFlightBy(Long id) {
        Flight flight = flightRepository.findById(id).orElseThrow();
-       FlightResponse response = flightMapper.flightEntity2DTO(flight);
+       FlightResponse response = flightMapper.flightEntity2DTO(flight, true);
        response.setAirport(airportService.getAirport(flight.getAirport().getAirportId()));
        return response;
     }

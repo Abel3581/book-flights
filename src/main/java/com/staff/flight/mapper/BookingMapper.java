@@ -15,10 +15,6 @@ public class BookingMapper {
         entity.setConditions(EnumBooking.REALIZED);
         entity.setIssue(LocalDateTime.now());
         entity.setDepartureDate(request.getDepartureDate());
-     /*   if(request.getDepartureDate().isAfter(request.getExpiration())||
-        request.getDepartureDate().isEqual(request.getExpiration())){
-            throw new RuntimeException("The departure date cannot be greater than the expiration date and they cannot be the same");
-        }*/
         return entity;
     }
 
