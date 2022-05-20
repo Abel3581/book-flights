@@ -1,12 +1,17 @@
 package com.staff.flight.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.staff.flight.entity.model.enums.EnumBooking;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
+import springfox.documentation.annotations.ApiIgnore;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -37,16 +42,15 @@ public class Booking {
     @Enumerated(value = EnumType.STRING)
     private EnumBooking conditions;
 
+
     @ManyToOne
     @JoinColumn(name = "passenger_id")
     private Passenger passenger;
 
-    //@JsonIgnore
     @OneToOne(mappedBy = "booking",cascade = CascadeType.ALL, fetch = FetchType.EAGER )
     private Passage passage;
 
     @ManyToOne
-    //@JsonIgnore
     @JoinColumn(name = "flight_id")
     private Flight flight;
 

@@ -38,7 +38,7 @@ public class BookingResponse {
     private long passengerId;
 
     //@JsonIgnore)
-    private Passage passage;
+    //private Passage passage;
 
     private long flightId;
 
