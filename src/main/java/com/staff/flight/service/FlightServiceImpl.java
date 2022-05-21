@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 
 @RequiredArgsConstructor
@@ -32,6 +33,9 @@ public class FlightServiceImpl implements FlightService {
     public FlightResponse save(FlightRequest request) {
         Flight entity = flightMapper.flightDTO2Entity(request);
         Airport airport = airportService.getAirportBy(request.getAirportId());
+        if(entity.getDestination().equalsIgnoreCase(airport.getName())){
+            throw new RuntimeException("The destination cannot be the same as the airport name.");
+        }
         entity.setAirport(airport);
         Flight flightSave = flightRepository.save(entity);
         airport.addFlights(flightSave);//I save the flight at the airport

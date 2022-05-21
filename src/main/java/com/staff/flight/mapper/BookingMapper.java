@@ -18,6 +18,7 @@ public class BookingMapper {
         entity.setConditions(EnumBooking.REALIZED);
         entity.setDateOfIssue(LocalDateTime.now());
         entity.setDepartureDate(request.getDepartureDate());
+        entity.setPayment(request.getPayment());
         return entity;
     }
 

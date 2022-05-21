@@ -26,4 +26,6 @@ public class BookingRequest {
 
     private Long flightId;
 
+    private double payment;
+
 }

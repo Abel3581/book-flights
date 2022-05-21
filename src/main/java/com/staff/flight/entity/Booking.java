@@ -43,6 +43,7 @@ public class Booking {
     @Enumerated(value = EnumType.STRING)
     private EnumBooking conditions;
 
+    private double payment;
 
     @ManyToOne
     @JoinColumn(name = "passenger_id")

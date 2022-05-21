@@ -11,7 +11,6 @@ import com.staff.flight.entity.model.request.PassengerRegisterRequest;
 import com.staff.flight.entity.model.response.InfoUserResponse;
 import com.staff.flight.entity.model.response.PassengerAuthenticatedResponse;
 import com.staff.flight.entity.model.response.PassengerRegisterResponse;
-import com.staff.flight.entity.model.response.PassengerResponse;
 import com.staff.flight.exception.EmailAlreadyExistException;
 import com.staff.flight.exception.NotFoundExceptions;
 import com.staff.flight.mapper.PassengerMapper;

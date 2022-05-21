@@ -24,6 +24,8 @@ public class Passage {
     @Column(name = "passage_id")
     private Long id;
 
+    private Long idPassenger;
+
     @OneToOne
     @JoinColumn(name = "booking_id")
     private Booking booking;
@@ -32,5 +34,5 @@ public class Passage {
     private LocalDateTime issue;//emision
 
     @Column(name = "payment_info")
-    private String paymentInfo;//info pago
+    private boolean paymentInfo;//info pago
 }
