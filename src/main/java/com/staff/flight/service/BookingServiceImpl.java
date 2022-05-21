@@ -47,6 +47,7 @@ public class BookingServiceImpl implements BookingService {
                 flight.addBooking(entity);
                 flight.contOccupiedSeats();
                 flightRepository.save(flight);
+                ((Passenger) user).addBooking(entity);
                 return bookingMapper.bookingEntity2DTO(save);
             }
         }
