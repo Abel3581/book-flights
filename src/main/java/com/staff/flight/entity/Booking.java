@@ -16,6 +16,7 @@ import springfox.documentation.annotations.ApiIgnore;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.Objects;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -53,5 +54,19 @@ public class Booking {
     @ManyToOne
     @JoinColumn(name = "flight_id")
     private Flight flight;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Booking booking = (Booking) o;
+        return Objects.equals(bookingId, booking.bookingId) &&
+                Objects.equals(dateOfIssue, booking.dateOfIssue)
+                && Objects.equals(expiration, booking.expiration)
+                && Objects.equals(departureDate, booking.departureDate)
+                && conditions == booking.conditions && Objects.equals(passenger, booking.passenger)
+                && Objects.equals(passage, booking.passage) && Objects.equals(flight, booking.flight);
+    }
+
 
 }
