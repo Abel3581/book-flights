@@ -13,7 +13,7 @@ public class BookingMapper {
     public Booking bookingDTO2Entity(BookingRequest request) {
         Booking entity = new Booking();
         entity.setConditions(EnumBooking.REALIZED);
-        entity.setIssue(LocalDateTime.now());
+        entity.setDateOfIssue(LocalDateTime.now());
         entity.setDepartureDate(request.getDepartureDate());
         return entity;
     }
@@ -24,7 +24,7 @@ public class BookingMapper {
         response.setConditions(save.getConditions());
         response.setExpiration(save.getExpiration());
         response.setFlightId(save.getFlight().getFlightId());
-        response.setIssue(save.getIssue());
+        response.setDateOfIssue(save.getDateOfIssue());
         response.setPassengerId(save.getPassenger().getPassengerId());
         response.setDepartureDate(save.getDepartureDate());
         return response;

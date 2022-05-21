@@ -41,7 +41,7 @@ public class Flight {
     @Column(name = "currency_code")
     private String currencyCode; //ARS, USD
 
-    private int occupiedSeats; //Asientos ocupados
+    private int occupiedSeats = 0; //Asientos ocupados
 
     @Column(name = "soft_delete")
     private boolean softDelete = Boolean.FALSE;
@@ -78,5 +78,8 @@ public class Flight {
     }
     public void changeId(long idAirport){
         airport.setAirportId(idAirport);
+    }
+    public void contOccupiedSeats(){
+        this.occupiedSeats = this.occupiedSeats+1;
     }
 }
