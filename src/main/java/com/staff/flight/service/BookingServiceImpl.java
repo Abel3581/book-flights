@@ -8,6 +8,7 @@ import com.staff.flight.entity.model.request.BookingRequest;
 import com.staff.flight.entity.model.response.BookingResponse;
 import com.staff.flight.mapper.BookingMapper;
 import com.staff.flight.repository.BookingRepository;
+import com.staff.flight.repository.FlightRepository;
 import com.staff.flight.service.abstraction.BookingService;
 import com.staff.flight.service.abstraction.FlightService;
 import com.staff.flight.service.abstraction.PassengerService;
@@ -25,6 +26,8 @@ public class BookingServiceImpl implements BookingService {
     private final PassengerService passengerService;
     private final FlightService flightService;
 
+    private final FlightRepository flightRepository;
+
     @Override
     public BookingResponse save(BookingRequest request) {
         Booking entity = bookingMapper.bookingDTO2Entity(request);
@@ -34,12 +37,18 @@ public class BookingServiceImpl implements BookingService {
         entity.setFlight(flight);
         entity.setExpiration(request.getDepartureDate().plusHours(1));
 
-        if (entity.getDepartureDate().isBefore(entity.getIssue())) {
-            throw new RuntimeException("La fecha de salida no puede ser antes del dia actual");
+        if (entity.getDepartureDate().isBefore(entity.getDateOfIssue())) {
+            throw new RuntimeException("The departure date cannot be before the current day.");
         } else {
             Booking save = bookingRepository.save(entity);
-            flight.addBooking(entity);
-            return bookingMapper.bookingEntity2DTO(save);
+            if(flight.getOccupiedSeats() >= flight.getAbility()){
+                throw new RuntimeException("The maximum capacity is already full choose another flight.");
+            }else {
+                flight.addBooking(entity);
+                flight.contOccupiedSeats();
+                flightRepository.save(flight);
+                return bookingMapper.bookingEntity2DTO(save);
+            }
         }
     }
 }

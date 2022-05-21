@@ -31,7 +31,7 @@ public class Booking {
     private Long bookingId;
 
     @JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss[.SSS][.SS][.S]")
-    private LocalDateTime issue;//fecha_emision
+    private LocalDateTime dateOfIssue;//fecha_emision
 
     @JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss[.SSS][.SS][.S]")
     private LocalDateTime expiration;//fecha_vencimiento
