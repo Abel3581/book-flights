@@ -1,20 +1,19 @@
 package com.staff.flight.service;
 
-import com.staff.flight.entity.Booking;
-import com.staff.flight.entity.Flight;
-import com.staff.flight.entity.Passenger;
-import com.staff.flight.entity.User;
+import com.staff.flight.entity.*;
 import com.staff.flight.entity.model.request.BookingRequest;
 import com.staff.flight.entity.model.response.BookingResponse;
 import com.staff.flight.mapper.BookingMapper;
 import com.staff.flight.repository.BookingRepository;
 import com.staff.flight.repository.FlightRepository;
+import com.staff.flight.repository.PassageRepository;
 import com.staff.flight.service.abstraction.BookingService;
 import com.staff.flight.service.abstraction.FlightService;
 import com.staff.flight.service.abstraction.PassengerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -28,6 +27,10 @@ public class BookingServiceImpl implements BookingService {
 
     private final FlightRepository flightRepository;
 
+    private final PassageRepository passageRepository;
+
+    //Agrega la reserva, el pasage, al vuelo le asigna reservas.
+    //Add the reservation, the ticket, assign reservations to the flight.
     @Override
     public BookingResponse save(BookingRequest request) {
         Booking entity = bookingMapper.bookingDTO2Entity(request);
@@ -48,6 +51,15 @@ public class BookingServiceImpl implements BookingService {
                 flight.contOccupiedSeats();
                 flightRepository.save(flight);
                 ((Passenger) user).addBooking(entity);
+                Passage passage = new Passage();
+                passage.setBooking(entity);
+                passage.setIssue(LocalDateTime.now());
+                passage.setIdPassenger(((Passenger) user).getPassengerId());
+                    if(flight.getPrice() != passage.getBooking().getPayment()){
+                        throw new RuntimeException("The money has to be equal to the price of the flight.");
+                    }
+                passage.setPaymentInfo(true);
+                passageRepository.save(passage);
                 return bookingMapper.bookingEntity2DTO(save,false);
             }
         }
