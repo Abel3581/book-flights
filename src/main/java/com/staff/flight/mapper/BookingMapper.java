@@ -7,6 +7,9 @@ import com.staff.flight.entity.model.response.BookingResponse;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 @Component
 public class BookingMapper {
@@ -18,7 +21,7 @@ public class BookingMapper {
         return entity;
     }
 
-    public BookingResponse bookingEntity2DTO(Booking save) {
+    public BookingResponse bookingEntity2DTO(Booking save, boolean loadBooking) {
         BookingResponse response = new BookingResponse();
         response.setBookingId(save.getBookingId());
         response.setConditions(save.getConditions());
@@ -28,5 +31,13 @@ public class BookingMapper {
         response.setPassengerId(save.getPassenger().getPassengerId());
         response.setDepartureDate(save.getDepartureDate());
         return response;
+    }
+
+    public List<BookingResponse> bookingEntitySet2DtoList(Collection<Booking> bookings) {
+        List<BookingResponse> responses = new ArrayList<>();
+        for (Booking b: bookings){
+            responses.add(bookingEntity2DTO(b,true));
+        }
+        return responses;
     }
 }

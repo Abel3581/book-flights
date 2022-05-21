@@ -1,15 +1,20 @@
 package com.staff.flight.mapper;
 import com.staff.flight.entity.Passenger;
 import com.staff.flight.entity.model.request.PassengerRegisterRequest;
+import com.staff.flight.entity.model.response.BookingResponse;
 import com.staff.flight.entity.model.response.InfoUserResponse;
 import com.staff.flight.entity.model.response.PassengerRegisterResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.sql.Timestamp;
+import java.util.List;
 
+@RequiredArgsConstructor
 @Component
 public class PassengerMapper {
+
+    private final BookingMapper bookingMapper;
 
     public Passenger requestDTO2Entity(PassengerRegisterRequest request) {
         Passenger passenger = new Passenger();
@@ -46,8 +51,8 @@ public class PassengerMapper {
         infoUser.setPassword(passenger.getPassword());
         infoUser.setId(passenger.getPassengerId());
         if(loadBookings){
-            //TODO Falta terminar que devuelva las reservas.
-            // It remains to finish that it returns the reservations.
+            List<BookingResponse> bookingList = bookingMapper.bookingEntitySet2DtoList(passenger.getBookings());
+            infoUser.setBookings(bookingList);
         }
         return infoUser;
     }

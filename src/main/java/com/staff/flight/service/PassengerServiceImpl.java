@@ -11,6 +11,7 @@ import com.staff.flight.entity.model.request.PassengerRegisterRequest;
 import com.staff.flight.entity.model.response.InfoUserResponse;
 import com.staff.flight.entity.model.response.PassengerAuthenticatedResponse;
 import com.staff.flight.entity.model.response.PassengerRegisterResponse;
+import com.staff.flight.entity.model.response.PassengerResponse;
 import com.staff.flight.exception.EmailAlreadyExistException;
 import com.staff.flight.exception.NotFoundExceptions;
 import com.staff.flight.mapper.PassengerMapper;
@@ -102,6 +103,7 @@ public class PassengerServiceImpl  implements PassengerService, UserDetailsServi
         return passengerRepository.findByEmail(email);
 
     }
+
     @Override
     public User getInfoUser() throws NotFoundExceptions {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -113,4 +115,12 @@ public class PassengerServiceImpl  implements PassengerService, UserDetailsServi
 
         return passengerRepository.findByEmail(principal.toString());
     }
+
+    //Devuelve el pasagero con sus reservas de vuelos
+    @Override
+    public InfoUserResponse getById(long id) {
+        Passenger passenger = passengerRepository.findById(id).orElseThrow();
+        return passengerMapper.passengerEntity2DTO(passenger,true);
+    }
+
 }
