@@ -1,6 +1,6 @@
 package com.staff.flight.service;
 
-import com.staff.flight.entity.Role;
+import com.staff.flight.model.entity.Role;
 import com.staff.flight.repository.RoleRepository;
 import com.staff.flight.service.abstraction.RoleService;
 import lombok.RequiredArgsConstructor;

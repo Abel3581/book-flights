@@ -1,10 +1,9 @@
 package com.staff.flight.config.seeder;
 
-import com.staff.flight.entity.Airport;
-import com.staff.flight.entity.Passenger;
-import com.staff.flight.entity.Role;
-import com.staff.flight.entity.User;
-import com.staff.flight.entity.model.enums.ApplicationRole;
+import com.staff.flight.model.entity.Airport;
+import com.staff.flight.model.entity.Passenger;
+import com.staff.flight.model.entity.Role;
+import com.staff.flight.model.enums.ApplicationRole;
 import com.staff.flight.repository.AirportRepository;
 import com.staff.flight.repository.PassengerRepository;
 import com.staff.flight.repository.RoleRepository;
@@ -14,11 +13,9 @@ import org.springframework.context.event.EventListener;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.xml.transform.sax.SAXResult;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
 
 @RequiredArgsConstructor
 @Service

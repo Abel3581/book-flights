@@ -1,6 +1,5 @@
-package com.staff.flight.entity.model.response;
+package com.staff.flight.model.response;
 
-import com.staff.flight.entity.Booking;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

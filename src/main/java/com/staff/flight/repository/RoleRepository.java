@@ -1,6 +1,6 @@
 package com.staff.flight.repository;
 
-import com.staff.flight.entity.Role;
+import com.staff.flight.model.entity.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

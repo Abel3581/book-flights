@@ -1,7 +1,6 @@
-package com.staff.flight.entity;
+package com.staff.flight.model.entity;
 
 import lombok.*;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.sql.Timestamp;

@@ -1,13 +1,12 @@
 package com.staff.flight.service.abstraction;
 
-import com.staff.flight.entity.Passenger;
-import com.staff.flight.entity.User;
-import com.staff.flight.entity.model.request.PassengerAuthenticationRequest;
-import com.staff.flight.entity.model.request.PassengerRegisterRequest;
-import com.staff.flight.entity.model.response.InfoUserResponse;
-import com.staff.flight.entity.model.response.PassengerAuthenticatedResponse;
-import com.staff.flight.entity.model.response.PassengerRegisterResponse;
-import com.staff.flight.entity.model.response.PassengerResponse;
+import com.staff.flight.model.entity.Passenger;
+import com.staff.flight.model.entity.User;
+import com.staff.flight.model.request.PassengerAuthenticationRequest;
+import com.staff.flight.model.request.PassengerRegisterRequest;
+import com.staff.flight.model.response.InfoUserResponse;
+import com.staff.flight.model.response.PassengerAuthenticatedResponse;
+import com.staff.flight.model.response.PassengerRegisterResponse;
 import com.staff.flight.exception.EmailAlreadyExistException;
 import com.staff.flight.exception.NotFoundExceptions;
 

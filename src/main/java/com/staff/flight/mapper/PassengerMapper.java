@@ -1,9 +1,9 @@
 package com.staff.flight.mapper;
-import com.staff.flight.entity.Passenger;
-import com.staff.flight.entity.model.request.PassengerRegisterRequest;
-import com.staff.flight.entity.model.response.BookingResponse;
-import com.staff.flight.entity.model.response.InfoUserResponse;
-import com.staff.flight.entity.model.response.PassengerRegisterResponse;
+import com.staff.flight.model.entity.Passenger;
+import com.staff.flight.model.request.PassengerRegisterRequest;
+import com.staff.flight.model.response.BookingResponse;
+import com.staff.flight.model.response.InfoUserResponse;
+import com.staff.flight.model.response.PassengerRegisterResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

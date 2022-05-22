@@ -1,4 +1,4 @@
-package com.staff.flight.entity.model.enums;
+package com.staff.flight.model.enums;
 
 public enum EnumFlight {
     CONFIRMED, CANCELLED, RESCHEDULED,INPROCESS

@@ -1,22 +1,14 @@
-package com.staff.flight.entity;
+package com.staff.flight.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.staff.flight.entity.model.enums.EnumBooking;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiModelProperty;
-import io.swagger.annotations.ApiOperation;
+import com.staff.flight.model.enums.EnumBooking;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.format.annotation.DateTimeFormat;
-import springfox.documentation.annotations.ApiIgnore;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.Objects;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -56,18 +48,7 @@ public class Booking {
     @JoinColumn(name = "flight_id")
     private Flight flight;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Booking booking = (Booking) o;
-        return Objects.equals(bookingId, booking.bookingId) &&
-                Objects.equals(dateOfIssue, booking.dateOfIssue)
-                && Objects.equals(expiration, booking.expiration)
-                && Objects.equals(departureDate, booking.departureDate)
-                && conditions == booking.conditions && Objects.equals(passenger, booking.passenger)
-                && Objects.equals(passage, booking.passage) && Objects.equals(flight, booking.flight);
-    }
+
 
 
 }

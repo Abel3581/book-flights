@@ -1,8 +1,8 @@
 package com.staff.flight.service;
 
-import com.staff.flight.entity.*;
-import com.staff.flight.entity.model.request.BookingRequest;
-import com.staff.flight.entity.model.response.BookingResponse;
+import com.staff.flight.model.entity.*;
+import com.staff.flight.model.request.BookingRequest;
+import com.staff.flight.model.response.BookingResponse;
 import com.staff.flight.mapper.BookingMapper;
 import com.staff.flight.repository.BookingRepository;
 import com.staff.flight.repository.FlightRepository;
@@ -14,7 +14,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @RequiredArgsConstructor
 @Service
@@ -41,7 +40,7 @@ public class BookingServiceImpl implements BookingService {
         entity.setExpiration(request.getDepartureDate().plusHours(1));
 
         if (entity.getDepartureDate().isBefore(entity.getDateOfIssue())) {
-            throw new RuntimeException("The departure date cannot be before the current day.");
+            throw new ArithmeticException("The departure date cannot be before the current day.");
         } else {
             Booking save = bookingRepository.save(entity);
             if(flight.getOccupiedSeats() >= flight.getAbility()){
@@ -60,7 +59,7 @@ public class BookingServiceImpl implements BookingService {
                     }
                 passage.setPaymentInfo(true);
                 passageRepository.save(passage);
-                return bookingMapper.bookingEntity2DTO(save,false);
+                return bookingMapper.bookingEntity2DTO(save);
             }
         }
     }

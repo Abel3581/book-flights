@@ -1,21 +1,19 @@
 package com.staff.flight.controller;
 
-import com.staff.flight.entity.User;
-import com.staff.flight.entity.model.request.PassengerAuthenticationRequest;
-import com.staff.flight.entity.model.request.PassengerRegisterRequest;
-import com.staff.flight.entity.model.response.InfoUserResponse;
-import com.staff.flight.entity.model.response.PassengerAuthenticatedResponse;
-import com.staff.flight.entity.model.response.PassengerRegisterResponse;
+import com.staff.flight.model.entity.User;
+import com.staff.flight.model.request.PassengerAuthenticationRequest;
+import com.staff.flight.model.request.PassengerRegisterRequest;
+import com.staff.flight.model.response.InfoUserResponse;
+import com.staff.flight.model.response.PassengerAuthenticatedResponse;
+import com.staff.flight.model.response.PassengerRegisterResponse;
 import com.staff.flight.exception.EmailAlreadyExistException;
 import com.staff.flight.exception.NotFoundExceptions;
 import com.staff.flight.service.abstraction.PassengerService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
 
 @RequiredArgsConstructor

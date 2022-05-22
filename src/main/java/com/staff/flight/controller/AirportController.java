@@ -1,7 +1,7 @@
 package com.staff.flight.controller;
 
-import com.staff.flight.entity.model.request.AirportRequest;
-import com.staff.flight.entity.model.response.AirportResponse;
+import com.staff.flight.model.request.AirportRequest;
+import com.staff.flight.model.response.AirportResponse;
 import com.staff.flight.service.abstraction.AirportService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

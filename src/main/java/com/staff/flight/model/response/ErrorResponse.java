@@ -1,4 +1,4 @@
-package com.staff.flight.entity.model.response;
+package com.staff.flight.model.response;
 
 import com.fasterxml.jackson.annotation.JsonRootName;
 import lombok.Getter;

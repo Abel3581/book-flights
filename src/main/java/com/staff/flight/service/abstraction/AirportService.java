@@ -1,8 +1,8 @@
 package com.staff.flight.service.abstraction;
 
-import com.staff.flight.entity.Airport;
-import com.staff.flight.entity.model.request.AirportRequest;
-import com.staff.flight.entity.model.response.AirportResponse;
+import com.staff.flight.model.entity.Airport;
+import com.staff.flight.model.request.AirportRequest;
+import com.staff.flight.model.response.AirportResponse;
 
 import javax.persistence.EntityNotFoundException;
 

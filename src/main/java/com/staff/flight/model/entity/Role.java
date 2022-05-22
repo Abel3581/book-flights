@@ -1,4 +1,4 @@
-package com.staff.flight.entity;
+package com.staff.flight.model.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,18 +1,12 @@
-package com.staff.flight.entity.model.request;
+package com.staff.flight.model.request;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.staff.flight.entity.Passage;
-import com.staff.flight.entity.Passenger;
-import com.staff.flight.entity.model.enums.EnumBooking;
-import io.swagger.annotations.ApiImplicitParam;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
-import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @AllArgsConstructor

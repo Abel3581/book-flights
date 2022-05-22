@@ -1,4 +1,4 @@
-package com.staff.flight.entity;
+package com.staff.flight.model.entity;
 
 import lombok.*;
 import org.hibernate.annotations.SQLDelete;
@@ -6,7 +6,6 @@ import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 

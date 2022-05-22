@@ -1,7 +1,7 @@
 package com.staff.flight.service.abstraction;
 
-import com.staff.flight.entity.model.request.BookingRequest;
-import com.staff.flight.entity.model.response.BookingResponse;
+import com.staff.flight.model.request.BookingRequest;
+import com.staff.flight.model.response.BookingResponse;
 
 public interface BookingService {
     BookingResponse save(BookingRequest request);

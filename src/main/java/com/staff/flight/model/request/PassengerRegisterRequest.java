@@ -1,20 +1,20 @@
-package com.staff.flight.entity.model.response;
+package com.staff.flight.model.request;
+
 
 import lombok.*;
 
-@Builder
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class PassengerRegisterResponse {
+public class PassengerRegisterRequest {
 
-    private Long id;
     private String firstName;
     private String lastName;
     private String email; // es el username
     private String password;
     private String dni;
     private String country;
-    private String token;
+
 }
