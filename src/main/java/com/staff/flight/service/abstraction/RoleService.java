@@ -1,6 +1,6 @@
 package com.staff.flight.service.abstraction;
 
-import com.staff.flight.entity.Role;
+import com.staff.flight.model.entity.Role;
 
 public interface RoleService {
 

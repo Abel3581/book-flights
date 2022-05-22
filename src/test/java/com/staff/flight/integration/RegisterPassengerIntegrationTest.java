@@ -3,12 +3,11 @@ package com.staff.flight.integration;
 import com.staff.flight.common.AbstractBaseIntegrationTest;
 import com.staff.flight.common.SecurityTestConfig;
 import com.staff.flight.config.JwtUtil;
-import com.staff.flight.entity.Passenger;
-import com.staff.flight.entity.User;
-import com.staff.flight.entity.model.enums.ApplicationRole;
-import com.staff.flight.entity.model.request.PassengerRegisterRequest;
-import com.staff.flight.entity.model.response.ErrorResponse;
-import com.staff.flight.entity.model.response.PassengerRegisterResponse;
+import com.staff.flight.model.entity.Passenger;
+import com.staff.flight.model.enums.ApplicationRole;
+import com.staff.flight.model.request.PassengerRegisterRequest;
+import com.staff.flight.model.response.ErrorResponse;
+import com.staff.flight.model.response.PassengerRegisterResponse;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -22,7 +21,6 @@ import org.junit.runner.RunWith;
 
 import java.util.Objects;
 
-import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.when;

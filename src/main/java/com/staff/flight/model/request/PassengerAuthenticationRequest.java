@@ -1,4 +1,4 @@
-package com.staff.flight.entity.model.request;
+package com.staff.flight.model.request;
 
 import lombok.*;
 

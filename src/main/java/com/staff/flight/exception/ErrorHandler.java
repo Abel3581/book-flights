@@ -1,6 +1,6 @@
 package com.staff.flight.exception;
 
-import com.staff.flight.entity.model.response.ErrorResponse;
+import com.staff.flight.model.response.ErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;

@@ -1,8 +1,7 @@
 package com.staff.flight.common;
 
-import com.staff.flight.entity.Passenger;
-import com.staff.flight.entity.Role;
-import com.staff.flight.entity.User;
+import com.staff.flight.model.entity.Passenger;
+import com.staff.flight.model.entity.Role;
 import com.staff.flight.repository.PassengerRepository;
 import com.staff.flight.service.abstraction.RoleService;
 import org.assertj.core.util.Lists;

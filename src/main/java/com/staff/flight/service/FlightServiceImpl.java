@@ -1,11 +1,10 @@
 package com.staff.flight.service;
 
 
-import com.staff.flight.entity.Airport;
-import com.staff.flight.entity.Flight;
-import com.staff.flight.entity.model.request.FlightRequest;
-import com.staff.flight.entity.model.response.FlightResponse;
-import com.staff.flight.mapper.AirportMapper;
+import com.staff.flight.model.entity.Airport;
+import com.staff.flight.model.entity.Flight;
+import com.staff.flight.model.request.FlightRequest;
+import com.staff.flight.model.response.FlightResponse;
 import com.staff.flight.mapper.FlightMapper;
 import com.staff.flight.repository.FlightRepository;
 import com.staff.flight.service.abstraction.AirportService;
@@ -15,7 +14,6 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
-import java.util.Locale;
 import java.util.Optional;
 
 @RequiredArgsConstructor

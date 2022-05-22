@@ -1,6 +1,6 @@
 package com.staff.flight.config;
 
-import com.staff.flight.entity.Passenger;
+import com.staff.flight.model.entity.Passenger;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

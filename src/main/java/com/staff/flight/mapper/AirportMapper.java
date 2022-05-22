@@ -1,15 +1,12 @@
 package com.staff.flight.mapper;
 
-import com.staff.flight.entity.Airport;
-import com.staff.flight.entity.Flight;
-import com.staff.flight.entity.model.request.AirportRequest;
-import com.staff.flight.entity.model.response.AirportResponse;
-import com.staff.flight.entity.model.response.FlightResponse;
+import com.staff.flight.model.entity.Airport;
+import com.staff.flight.model.request.AirportRequest;
+import com.staff.flight.model.response.AirportResponse;
+import com.staff.flight.model.response.FlightResponse;
 import lombok.Builder;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Builder

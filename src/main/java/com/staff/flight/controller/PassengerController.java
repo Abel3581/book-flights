@@ -1,7 +1,6 @@
 package com.staff.flight.controller;
 
-import com.staff.flight.entity.model.response.InfoUserResponse;
-import com.staff.flight.entity.model.response.PassengerResponse;
+import com.staff.flight.model.response.InfoUserResponse;
 import com.staff.flight.service.abstraction.PassengerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

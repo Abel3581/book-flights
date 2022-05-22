@@ -1,6 +1,6 @@
-package com.staff.flight.entity.model.request;
+package com.staff.flight.model.request;
 
-import com.staff.flight.entity.model.enums.EnumFlight;
+import com.staff.flight.model.enums.EnumFlight;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

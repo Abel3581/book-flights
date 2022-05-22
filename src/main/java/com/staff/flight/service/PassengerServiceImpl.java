@@ -2,15 +2,15 @@ package com.staff.flight.service;
 
 
 import com.staff.flight.config.JwtUtil;
-import com.staff.flight.entity.Passenger;
-import com.staff.flight.entity.Role;
-import com.staff.flight.entity.User;
-import com.staff.flight.entity.model.enums.ApplicationRole;
-import com.staff.flight.entity.model.request.PassengerAuthenticationRequest;
-import com.staff.flight.entity.model.request.PassengerRegisterRequest;
-import com.staff.flight.entity.model.response.InfoUserResponse;
-import com.staff.flight.entity.model.response.PassengerAuthenticatedResponse;
-import com.staff.flight.entity.model.response.PassengerRegisterResponse;
+import com.staff.flight.model.entity.Passenger;
+import com.staff.flight.model.entity.Role;
+import com.staff.flight.model.entity.User;
+import com.staff.flight.model.enums.ApplicationRole;
+import com.staff.flight.model.request.PassengerAuthenticationRequest;
+import com.staff.flight.model.request.PassengerRegisterRequest;
+import com.staff.flight.model.response.InfoUserResponse;
+import com.staff.flight.model.response.PassengerAuthenticatedResponse;
+import com.staff.flight.model.response.PassengerRegisterResponse;
 import com.staff.flight.exception.EmailAlreadyExistException;
 import com.staff.flight.exception.NotFoundExceptions;
 import com.staff.flight.mapper.PassengerMapper;
@@ -116,6 +116,7 @@ public class PassengerServiceImpl  implements PassengerService, UserDetailsServi
     }
 
     //Devuelve el pasagero con sus reservas de vuelos
+    //Return the passenger with their flight reservations
     @Override
     public InfoUserResponse getById(long id) {
         Passenger passenger = passengerRepository.findById(id).orElseThrow();

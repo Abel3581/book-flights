@@ -1,10 +1,10 @@
 package com.staff.flight.mapper;
 
 
-import com.staff.flight.entity.Flight;
-import com.staff.flight.entity.model.enums.EnumFlight;
-import com.staff.flight.entity.model.request.FlightRequest;
-import com.staff.flight.entity.model.response.FlightResponse;
+import com.staff.flight.model.entity.Flight;
+import com.staff.flight.model.enums.EnumFlight;
+import com.staff.flight.model.request.FlightRequest;
+import com.staff.flight.model.response.FlightResponse;
 
 import org.springframework.stereotype.Component;
 

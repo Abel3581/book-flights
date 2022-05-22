@@ -1,9 +1,9 @@
 package com.staff.flight.mapper;
 
-import com.staff.flight.entity.Booking;
-import com.staff.flight.entity.model.enums.EnumBooking;
-import com.staff.flight.entity.model.request.BookingRequest;
-import com.staff.flight.entity.model.response.BookingResponse;
+import com.staff.flight.model.entity.Booking;
+import com.staff.flight.model.enums.EnumBooking;
+import com.staff.flight.model.request.BookingRequest;
+import com.staff.flight.model.response.BookingResponse;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -22,7 +22,7 @@ public class BookingMapper {
         return entity;
     }
 
-    public BookingResponse bookingEntity2DTO(Booking save, boolean loadBooking) {
+    public BookingResponse bookingEntity2DTO(Booking save) {
         BookingResponse response = new BookingResponse();
         response.setBookingId(save.getBookingId());
         response.setConditions(save.getConditions());
@@ -37,8 +37,22 @@ public class BookingMapper {
     public List<BookingResponse> bookingEntitySet2DtoList(Collection<Booking> bookings) {
         List<BookingResponse> responses = new ArrayList<>();
         for (Booking b: bookings){
-            responses.add(bookingEntity2DTO(b,true));
+            responses.add(bookingEntity2DTO(b));
         }
+        return responses;
+    }
+
+    public List<BookingResponse> bookingEntitySet2Dto(Booking booking) {
+        List<BookingResponse> responses = new ArrayList<>();
+        BookingResponse bookingResponse = new BookingResponse();
+        bookingResponse.setBookingId(booking.getBookingId());
+        bookingResponse.setConditions(booking.getConditions());
+        bookingResponse.setExpiration(booking.getExpiration());
+        bookingResponse.setDateOfIssue(booking.getDateOfIssue());
+        bookingResponse.setFlightId(booking.getFlight().getFlightId());
+        bookingResponse.setPassengerId(booking.getPassenger().getPassengerId());
+
+        responses.add(bookingResponse);
         return responses;
     }
 }

@@ -1,15 +1,11 @@
-package com.staff.flight.entity.model.response;
+package com.staff.flight.model.response;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.staff.flight.entity.Flight;
-import com.staff.flight.entity.Passage;
-import com.staff.flight.entity.Passenger;
-import com.staff.flight.entity.model.enums.EnumBooking;
+import com.staff.flight.model.enums.EnumBooking;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;

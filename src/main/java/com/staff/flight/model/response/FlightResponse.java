@@ -1,7 +1,7 @@
-package com.staff.flight.entity.model.response;
+package com.staff.flight.model.response;
 
 
-import com.staff.flight.entity.model.enums.EnumFlight;
+import com.staff.flight.model.enums.EnumFlight;
 import lombok.*;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
