@@ -28,7 +28,7 @@ public class BookingServiceImpl implements BookingService {
 
     private final PassageRepository passageRepository;
 
-    //Agrega la reserva, el pasage, al vuelo le asigna reservas.
+    //Agrega la reserva, el pasage, y al vuelo le asigna reservas.
     //Add the reservation, the ticket, assign reservations to the flight.
     @Override
     public BookingResponse save(BookingRequest request) {

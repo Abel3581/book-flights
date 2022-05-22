@@ -1,5 +1,6 @@
 package com.staff.flight.model.response;
 
+import com.staff.flight.model.entity.Booking;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,5 +22,5 @@ public class PassageResponse {
 
     private boolean paymentInfo;//info pago
 
-    List<BookingResponse> bookings;
+    private BookingResponse booking;
 }
